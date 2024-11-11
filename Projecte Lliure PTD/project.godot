@@ -1,0 +1,127 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Projecte Lliure PTD"
+run/main_scene="res://Nodes/Scene nodes/Levels/Tests/test.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=2
+
+[file_customization]
+
+folder_colors={
+"res://Assets/2D art/": "orange",
+"res://Assets/Models/": "yellow",
+"res://Assets/Models/Enemies/": "red",
+"res://Assets/Models/Environment/": "green",
+"res://Assets/Models/Player/": "blue",
+"res://Assets/Music/": "purple",
+"res://Assets/Music/Levels/": "yellow",
+"res://Assets/Music/Menus/": "green",
+"res://Assets/SFX/": "blue",
+"res://Assets/SFX/Enemies/": "red",
+"res://Assets/SFX/Environment/": "green",
+"res://Assets/SFX/Player/": "blue",
+"res://Assets/Shaders/": "pink",
+"res://Assets/VFX/": "teal",
+"res://Nodes/Building nodes/": "orange",
+"res://Nodes/Building nodes/Enemies/": "red",
+"res://Nodes/Building nodes/Environment/": "green",
+"res://Nodes/Building nodes/Managers/": "gray",
+"res://Nodes/Building nodes/Player/": "blue",
+"res://Nodes/Building nodes/UI/": "purple",
+"res://Nodes/Entity nodes/": "teal",
+"res://Nodes/Entity nodes/Enemies/": "red",
+"res://Nodes/Entity nodes/Environment/": "green",
+"res://Nodes/Entity nodes/Managers/": "gray",
+"res://Nodes/Entity nodes/Player/": "blue",
+"res://Nodes/Entity nodes/Tests/": "yellow",
+"res://Nodes/Entity nodes/UI/": "purple",
+"res://Nodes/Scene nodes/": "pink",
+"res://Nodes/Scene nodes/Levels/": "yellow",
+"res://Nodes/Scene nodes/Levels/Tests/": "orange",
+"res://Nodes/Scene nodes/Menus/": "green",
+"res://Scripts/Enemies/": "red",
+"res://Scripts/Environment/": "green",
+"res://Scripts/Managers/": "gray",
+"res://Scripts/Player/": "blue",
+"res://Scripts/UI/": "purple"
+}
+
+[global_group]
+
+ENEMIES=""
+PLAYER=""
+CORPSE=""
+
+[input]
+
+up={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"location":0,"echo":false,"script":null)
+]
+}
+down={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+]
+}
+left={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
+]
+}
+right={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"location":0,"echo":false,"script":null)
+]
+}
+jump={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
+]
+}
+esc={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+Lclick={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(141, 18),"global_position":Vector2(145, 59),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+j={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":74,"key_label":0,"unicode":106,"location":0,"echo":false,"script":null)
+]
+}
+u={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":85,"key_label":0,"unicode":117,"location":0,"echo":false,"script":null)
+]
+}
+Rclick={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(104, 11),"global_position":Vector2(111, 47),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

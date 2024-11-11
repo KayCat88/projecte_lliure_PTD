@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq7btclnw354o"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/test_enemy.gd" id="1_7mggs"]
+[ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="1_rohsg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omot1"]
+size = Vector2(106, 104)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5c65v"]
+radius = 93.771
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu838"]
+size = Vector2(65.14, 66)
+
+[node name="Test_enemy" type="CharacterBody2D" groups=["ENEMIES"]]
+script = ExtResource("1_7mggs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.101961, 1, 1)
+texture = ExtResource("1_rohsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_omot1")
+disabled = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_5c65v")
+
+[node name="AttackHitBox" type="Area2D" parent="."]
+position = Vector2(64, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
+position = Vector2(63.57, 1)
+shape = SubResource("RectangleShape2D_gu838")
+
+[node name="Offset" type="Marker2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="Searched_size_label" type="Label" parent="."]
+offset_left = -17.0
+offset_top = -104.0
+offset_right = 23.0
+offset_bottom = -81.0
+text = "Searches: "
+
+[connection signal="area_entered" from="AttackHitBox" to="." method="_on_attack_hit_box_area_entered"]

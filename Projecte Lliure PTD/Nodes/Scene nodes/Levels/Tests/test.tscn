@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnjvf8p2nji8f"]
+
+[ext_resource type="PackedScene" uid="uid://dakbbhvyuxtii" path="res://Nodes/Entity nodes/Player/player.tscn" id="1_6bkv6"]
+[ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="1_ywtvc"]
+[ext_resource type="PackedScene" uid="uid://2kg8s2ikkjga" path="res://Nodes/Entity nodes/UI/interface.tscn" id="7_tm0fe"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d85iu"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6mv64"]
+width = 2532
+height = 1797
+noise = SubResource("FastNoiseLite_d85iu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74eta"]
+size = Vector2(127, 128)
+
+[node name="Test" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(927, 563)
+texture = SubResource("NoiseTexture2D_6mv64")
+
+[node name="Player" parent="." groups=["PLAYER"] instance=ExtResource("1_6bkv6")]
+position = Vector2(832, 994)
+
+[node name="Area2D" type="Area2D" parent="." groups=["ENEMIES"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+modulate = Color(0.321569, 1, 0.0941176, 1)
+texture = ExtResource("1_ywtvc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_74eta")
+
+[node name="INTERFACE" parent="." instance=ExtResource("7_tm0fe")]
+
+[node name="Health and size" parent="INTERFACE" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../Player")
+
+[node name="Score" parent="INTERFACE" index="1"]
+script = null
+
+[editable path="INTERFACE"]

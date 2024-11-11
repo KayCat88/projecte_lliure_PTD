@@ -1,0 +1,136 @@
+[gd_scene load_steps=9 format=3 uid="uid://b42nsed7nam41"]
+
+[ext_resource type="Script" path="res://Scripts/UI/scene_changing_button.gd" id="1_bnlor"]
+[ext_resource type="FontFile" uid="uid://dvm5p12l3hxqn" path="res://Assets/rainyhearts.ttf" id="2_kedyv"]
+[ext_resource type="AudioStream" uid="uid://dwwvmlbn0otv8" path="res://Assets/Music/Main_menu_micro.wav" id="5_scvs5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6n834"]
+font = ExtResource("2_kedyv")
+font_size = 60
+font_color = Color(0.819608, 0.678431, 0.631373, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t0l60"]
+load_path = "res://.godot/imported/Tartigrade.png-572e564f8d4ce150c38c330ba6dbb5c4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i0wt1"]
+load_path = "res://.godot/imported/Tartigrade2.png-40d03c27536ce6004f99fbc4fdfd580f.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_so0ff"]
+font = ExtResource("2_kedyv")
+font_size = 30
+
+[sub_resource type="Environment" id="Environment_ol3du"]
+background_mode = 3
+ambient_light_color = Color(0.364084, 0.364084, 0.364084, 1)
+glow_enabled = true
+glow_bloom = 0.54
+
+[node name="Main menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+offset_right = 1153.0
+offset_bottom = 650.0
+color = Color(0.0509804, 0, 0.0941176, 1)
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -15.5
+offset_right = 23.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+text = ".                      .
+
+."
+script = ExtResource("1_bnlor")
+scene = "res://Nodes/Scene nodes/Levels/main.tscn"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -315.0
+offset_top = 30.0
+offset_right = 315.0
+offset_bottom = 87.0
+grow_horizontal = 2
+text = "SIZE MICROADAPTATIONS"
+label_settings = SubResource("LabelSettings_6n834")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 167.0
+offset_top = -81.0
+offset_right = 215.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = SubResource("CompressedTexture2D_t0l60")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -355.0
+offset_top = -121.0
+offset_right = -307.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = SubResource("CompressedTexture2D_i0wt1")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.5
+offset_right = 24.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "START"
+label_settings = SubResource("LabelSettings_so0ff")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_scvs5")
+volume_db = -10.0
+autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ol3du")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

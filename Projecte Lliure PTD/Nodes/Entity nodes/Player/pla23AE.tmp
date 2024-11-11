@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dakbbhvyuxtii"]
+
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_cc63b"]
+[ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="2_bursu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1y7x"]
+size = Vector2(128, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpyoi"]
+size = Vector2(125.452, 86.5)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_cc63b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bursu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_s1y7x")
+
+[node name="ShotPoint" type="Marker2D" parent="."]
+position = Vector2(64, 0)
+gizmo_extents = 34.1
+
+[node name="Offset" type="Marker2D" parent="."]
+position = Vector2(1, 0)
+gizmo_extents = 34.1
+
+[node name="Bite_Hit_Box" type="Area2D" parent="."]
+position = Vector2(64, 0)
+monitorable = false
+
+[node name="Bite_Collider" type="CollisionShape2D" parent="Bite_Hit_Box"]
+position = Vector2(64.2737, 0)
+shape = SubResource("RectangleShape2D_xpyoi")
+
+[node name="Hurt_Box" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurt_Box"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_s1y7x")
+
+[connection signal="area_entered" from="Bite_Hit_Box" to="." method="_on_bite_hit_box_area_entered"]
