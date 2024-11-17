@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 #constants
 var SPEED = 1000.0
-@export var ACCELERATION = 100
-@export var DECELERATION = 100
+@export var ACCELERATION = 122.2
+@export var DECELERATION = 122.2
 
 #variables
 var rotation_smoothing : Vector2
@@ -11,7 +11,7 @@ var attack_cooldown = 0.5
 var health = 10
 
 
-var movement_rotational_offset : Vector2
+var direction : Vector2
 var damage = 1
 
 #nodes
@@ -19,12 +19,12 @@ var damage = 1
 @onready var shot_point: Marker2D = $ShotPoint
 
 
-@onready var offset: Marker2D = $Offset
+
 
 
 
 #scenes
-
+var ball = preload("res://Nodes/Entity nodes/Player/ball.tscn")
 
 func _process(delta: float) -> void:
 	
@@ -42,32 +42,27 @@ func _physics_process(delta: float) -> void:
 	
 	handle_direction()
 	
-	
-	
-	
-	
 	handle_shooting()
 	
 	move_and_slide()
 
 func handle_movement():
-	movement_rotational_offset = offset.global_position - position
+	direction = Vector2(cos(rotation), sin(rotation))
 	
 	var hor_input = Input.get_axis("left", "right")
 	var ver_input = Input.get_axis("down", "up")
-	print(movement_rotational_offset)
+	
 	
 	if ver_input:
-		print(ver_input)
-		velocity.x = move_toward(velocity.x, SPEED*ver_input*movement_rotational_offset.x, ACCELERATION)
-		velocity.y = move_toward(velocity.y, SPEED*ver_input*movement_rotational_offset.y, ACCELERATION)
+		velocity.x = move_toward(velocity.x, SPEED*ver_input*direction.x, ACCELERATION)
+		velocity.y = move_toward(velocity.y, SPEED*ver_input*direction.y, ACCELERATION)
 	elif !hor_input and !ver_input:
 		velocity.y = move_toward(velocity.y, 0, DECELERATION)
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)
 	
 	if hor_input:
-		velocity.x = move_toward(velocity.x, SPEED*hor_input*-movement_rotational_offset.y, ACCELERATION)
-		velocity.y = move_toward(velocity.y, SPEED*hor_input*movement_rotational_offset.x, ACCELERATION)
+		velocity.x = move_toward(velocity.x, SPEED*hor_input*-direction.y, ACCELERATION)
+		velocity.y = move_toward(velocity.y, SPEED*hor_input*direction.x, ACCELERATION)
 	elif !hor_input and !ver_input:
 		velocity.y = move_toward(velocity.y, 0, DECELERATION)
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)
@@ -83,22 +78,13 @@ func handle_shooting():
 		attack_cooldown = 0.5
 		await  get_tree().create_timer(0.3).timeout
 		
-		#var bullet_instance = bullet.instantiate()
-		#get_parent().add_child(bullet_instance)
-		#bullet_instance.global_position = shot_point.global_position
-		#bullet_instance.rotation = rotation
-		#bullet_instance.scale = Vector2(size, size)
-		#bullet_instance.direction = movement_rotational_offset
-		
-		
+		var ball_instance = ball.instantiate()
+		get_parent().add_child(ball_instance)
+		ball_instance.global_position = shot_point.global_position
+		ball_instance.rotation = rotation
 		
 		
 
-
-		
-		
-		
-		
 
 
 

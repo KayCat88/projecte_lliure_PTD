@@ -7,6 +7,7 @@
 size = Vector2(127, 127)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
+collision_mask = 18
 script = ExtResource("1_cc63b")
 camera = NodePath("Camera2D")
 
@@ -18,16 +19,7 @@ texture = ExtResource("2_7s720")
 shape = SubResource("RectangleShape2D_s1y7x")
 
 [node name="ShotPoint" type="Marker2D" parent="."]
-position = Vector2(8, 0)
+position = Vector2(131, 0)
 gizmo_extents = 34.1
-
-[node name="Offset" type="Marker2D" parent="."]
-position = Vector2(1, 0)
-gizmo_extents = 34.1
-
-[node name="Hurt_Box" type="Area2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurt_Box"]
-shape = SubResource("RectangleShape2D_s1y7x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
