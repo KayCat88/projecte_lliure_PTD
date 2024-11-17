@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dakbbhvyuxtii" path="res://Nodes/Entity nodes/Player/player.tscn" id="1_6bkv6"]
 [ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="1_ywtvc"]
-[ext_resource type="PackedScene" uid="uid://c1tk1m8jn6gy7" path="res://Nodes/Entity nodes/environment/static_body_2d.tscn" id="4_u8h0l"]
+[ext_resource type="PackedScene" uid="uid://c1tk1m8jn6gy7" path="res://Nodes/Entity nodes/Environment/static_body_2d.tscn" id="4_u8h0l"]
 [ext_resource type="PackedScene" uid="uid://2kg8s2ikkjga" path="res://Nodes/Entity nodes/UI/interface.tscn" id="7_tm0fe"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d85iu"]
@@ -44,7 +44,7 @@ script = null
 
 [node name="StaticBody2D" parent="." instance=ExtResource("4_u8h0l")]
 position = Vector2(-272, 753)
-rotation = -1.56552
+rotation = 1.5708
 scale = Vector2(6.6414, 1)
 
 [node name="StaticBody2D5" parent="." instance=ExtResource("4_u8h0l")]
@@ -54,17 +54,24 @@ scale = Vector2(6.6414, 1)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("4_u8h0l")]
 position = Vector2(2153, 766)
-rotation = -1.56552
+rotation = 1.5708
+scale = Vector2(6.6414, 1)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("4_u8h0l")]
+position = Vector2(1647, -1322)
+rotation = 1.5708
 scale = Vector2(6.6414, 1)
 
 [node name="StaticBody2D3" parent="." instance=ExtResource("4_u8h0l")]
 position = Vector2(927, 1429)
-rotation = -3.13172
 scale = Vector2(6.6414, 1)
 
 [node name="StaticBody2D4" parent="." instance=ExtResource("4_u8h0l")]
 position = Vector2(934, -339)
-rotation = -3.13172
+scale = Vector2(6.6414, 1)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("4_u8h0l")]
+position = Vector2(2979, 296)
 scale = Vector2(6.6414, 1)
 
 [editable path="INTERFACE"]

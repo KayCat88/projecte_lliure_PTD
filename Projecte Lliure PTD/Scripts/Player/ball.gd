@@ -1,31 +1,30 @@
 extends CharacterBody2D
 
 
-var initial_speed = 150
-var speed_loss = 15
+var initial_speed = 500
+var speed_loss = 0.9
 var speed : float
 var direction : Vector2
+var lifetime = 110
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
 func _ready():
 	speed = initial_speed
 	
 func _physics_process(delta):
-	handle_movement()
+	
 	move_and_slide()
-	handle_bounces()
+	handle_bounces(delta)
+	lifetime -= delta
+	if lifetime <= 0:
+		queue_free()
 	
-func handle_movement():
-	direction = Vector2(cos(rotation), sin(rotation))
-	velocity.x = speed*direction.x
-	velocity.y = speed*direction.y
+
 	
-func handle_bounces():
-	pass
-
-
-
-
-
-func _on_area_2d_body_entered(body):
-	rotation = get_floor_angle()
+func handle_bounces(delta):
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.bounce(collision.get_normal())
+		velocity.x *= speed_loss
+		velocity.y *= speed_loss

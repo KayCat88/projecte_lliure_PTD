@@ -81,6 +81,7 @@ func handle_shooting():
 		var ball_instance = ball.instantiate()
 		get_parent().add_child(ball_instance)
 		ball_instance.global_position = shot_point.global_position
+		ball_instance.velocity = direction*ball_instance.initial_speed
 		ball_instance.rotation = rotation
 		
 		
