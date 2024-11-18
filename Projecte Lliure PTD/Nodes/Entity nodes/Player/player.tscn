@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dakbbhvyuxtii"]
+[gd_scene load_steps=6 format=3 uid="uid://dakbbhvyuxtii"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_cc63b"]
 [ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="2_7s720"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1y7x"]
 size = Vector2(127, 127)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j1ocs"]
+radius = 93.0215
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_euv5y"]
+radius = 43.0
+height = 162.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
 collision_mask = 18
@@ -23,3 +30,22 @@ position = Vector2(131, 0)
 gizmo_extents = 34.1
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Catching_box" type="Area2D" parent="."]
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Catching_box"]
+shape = SubResource("CircleShape2D_j1ocs")
+
+[node name="bounce_box" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bounce_box"]
+position = Vector2(114, -2)
+shape = SubResource("CapsuleShape2D_euv5y")
+disabled = true
+
+[connection signal="area_entered" from="Catching_box" to="." method="_on_catching_box_area_entered"]
+[connection signal="area_entered" from="bounce_box" to="." method="_on_bounce_box_area_entered"]

@@ -7,16 +7,16 @@ var SPEED = 1000.0
 
 #variables
 var rotation_smoothing : Vector2
-var attack_cooldown = 0.5
+var boost_cooldown = 0.5
 var health = 10
-
-
 var direction : Vector2
-var damage = 1
+var has_ball : bool = true
 
 #nodes
 @export var camera : Camera2D
 @onready var shot_point: Marker2D = $ShotPoint
+@onready var attack_box_collision = $bounce_box/CollisionShape2D
+
 
 
 
@@ -28,15 +28,17 @@ var ball = preload("res://Nodes/Entity nodes/Player/ball.tscn")
 
 func _process(delta: float) -> void:
 	
-	if attack_cooldown > -2:
-		attack_cooldown -= delta
+	if boost_cooldown > -1:
+		boost_cooldown -= delta
+		
+		
 	handle_death()
-	
+	if health <= 0:
+		health = 0
 
 func _physics_process(delta: float) -> void:
 	
-	if health <= 0:
-		health = 0
+	boost_ball()
 	
 	handle_movement()
 	
@@ -73,9 +75,8 @@ func handle_direction():
 
 func handle_shooting():
 	
-	if Input.is_action_just_pressed("Rclick") and attack_cooldown <= 0:
+	if Input.is_action_just_pressed("Rclick") and boost_cooldown <= 0 and has_ball == true:
 		
-		attack_cooldown = 0.5
 		await  get_tree().create_timer(0.3).timeout
 		
 		var ball_instance = ball.instantiate()
@@ -83,16 +84,36 @@ func handle_shooting():
 		ball_instance.global_position = shot_point.global_position
 		ball_instance.velocity = direction*ball_instance.initial_speed
 		ball_instance.rotation = rotation
-		
-		
-
-
-
-
-
+		has_ball = false
+	
+func boost_ball():
+	if Input.is_action_just_pressed("Lclick") and boost_cooldown <= 0:
+		attack_box_collision.disabled = false
+		boost_cooldown = 0.5
+		print("enabled")
+	if boost_cooldown <= 0.3 and attack_box_collision.disabled == false:
+		print("disabled")
+		attack_box_collision.disabled = true
 func handle_death():
 	
 	if health <= 0:
 		visible = false
 		
 		
+
+
+func _on_catching_box_area_entered(area):
+	if area is catchable_box:
+		area.die()
+		has_ball = true
+		
+
+		
+
+
+
+
+
+func _on_bounce_box_area_entered(area):
+	if area is catchable_box:
+		area.bounce_off(attack_box_collision.get_normal())

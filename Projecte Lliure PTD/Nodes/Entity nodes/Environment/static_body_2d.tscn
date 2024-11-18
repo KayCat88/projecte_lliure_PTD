@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8o6q7"]
 size = Vector2(422, 125)
 
-[node name="StaticBody2D" type="CharacterBody2D"]
+[node name="StaticBody2D" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 13
 
