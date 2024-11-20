@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnjvf8p2nji8f"]
+[gd_scene load_steps=10 format=3 uid="uid://cnjvf8p2nji8f"]
 
 [ext_resource type="PackedScene" uid="uid://dakbbhvyuxtii" path="res://Nodes/Entity nodes/Player/player.tscn" id="1_6bkv6"]
 [ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="1_ywtvc"]
 [ext_resource type="PackedScene" uid="uid://c1tk1m8jn6gy7" path="res://Nodes/Entity nodes/Environment/static_body_2d.tscn" id="4_u8h0l"]
+[ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="5_82vmt"]
+[ext_resource type="PackedScene" uid="uid://boi3vy4206d3f" path="res://Nodes/Entity nodes/Enemies/test_enemy.tscn" id="6_pe4qh"]
 [ext_resource type="PackedScene" uid="uid://2kg8s2ikkjga" path="res://Nodes/Entity nodes/UI/interface.tscn" id="7_tm0fe"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d85iu"]
@@ -37,7 +39,7 @@ shape = SubResource("RectangleShape2D_74eta")
 [node name="INTERFACE" parent="." instance=ExtResource("7_tm0fe")]
 
 [node name="Health and size" parent="INTERFACE" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../Player")
+player = NodePath("../../Player/health_mananger")
 
 [node name="Score" parent="INTERFACE" index="1"]
 script = null
@@ -73,5 +75,10 @@ scale = Vector2(6.6414, 1)
 [node name="StaticBody2D7" parent="." instance=ExtResource("4_u8h0l")]
 position = Vector2(2979, 296)
 scale = Vector2(6.6414, 1)
+
+[node name="health_mananger" parent="." instance=ExtResource("5_82vmt")]
+
+[node name="test_enemy" parent="." instance=ExtResource("6_pe4qh")]
+position = Vector2(669, 332)
 
 [editable path="INTERFACE"]

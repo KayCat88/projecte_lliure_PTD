@@ -8,7 +8,7 @@ var SPEED = 1000.0
 #variables
 var rotation_smoothing : Vector2
 var boost_cooldown = 0.5
-var health = 10
+
 var direction : Vector2
 var has_ball : bool = true
 
@@ -32,9 +32,7 @@ func _process(delta: float) -> void:
 		boost_cooldown -= delta
 		
 		
-	handle_death()
-	if health <= 0:
-		health = 0
+	
 
 func _physics_process(delta: float) -> void:
 	
@@ -90,16 +88,11 @@ func boost_ball():
 	if Input.is_action_just_pressed("Lclick") and boost_cooldown <= 0:
 		attack_box_collision.disabled = false
 		boost_cooldown = 0.5
-		print("enabled")
+		
 	if boost_cooldown <= 0.3 and attack_box_collision.disabled == false:
-		print("disabled")
+		
 		attack_box_collision.disabled = true
-func handle_death():
-	
-	if health <= 0:
-		visible = false
-		
-		
+
 
 
 func _on_catching_box_area_entered(area):
@@ -116,4 +109,4 @@ func _on_catching_box_area_entered(area):
 
 func _on_bounce_box_area_entered(area):
 	if area is catchable_box:
-		area.bounce_off(attack_box_collision.get_normal())
+		area.bounce_off(Vector2(cos(rotation), sin(rotation)))

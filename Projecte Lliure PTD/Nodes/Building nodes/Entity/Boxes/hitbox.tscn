@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://csmacf83jh8p6"]
+[gd_scene load_steps=2 format=3 uid="uid://csmacf83jh8p6"]
+
+[ext_resource type="Script" path="res://Scripts/Building nodes/Entity/Boxes/hitbox.gd" id="1_8rmh6"]
 
 [node name="Hitbox" type="Area2D"]
+monitorable = false
+script = ExtResource("1_8rmh6")
+
+[connection signal="area_entered" from="." to="." method="hit_box_on_area_entered"]

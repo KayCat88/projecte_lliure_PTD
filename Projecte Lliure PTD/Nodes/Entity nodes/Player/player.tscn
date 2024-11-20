@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dakbbhvyuxtii"]
+[gd_scene load_steps=9 format=3 uid="uid://dakbbhvyuxtii"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_cc63b"]
 [ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="2_7s720"]
+[ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_jk3bt"]
+[ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="4_nkur5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1y7x"]
 size = Vector2(127, 127)
@@ -12,6 +14,9 @@ radius = 93.0215
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_euv5y"]
 radius = 43.0
 height = 162.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhboj"]
+radius = 55.0091
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
 collision_mask = 18
@@ -46,6 +51,15 @@ collision_mask = 4
 position = Vector2(114, -2)
 shape = SubResource("CapsuleShape2D_euv5y")
 disabled = true
+
+[node name="hurt_box" parent="." node_paths=PackedStringArray("health_m") instance=ExtResource("3_jk3bt")]
+health_m = NodePath("../health_mananger")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
+self_modulate = Color(1, 1, 0, 1)
+shape = SubResource("CircleShape2D_vhboj")
+
+[node name="health_mananger" parent="." instance=ExtResource("4_nkur5")]
 
 [connection signal="area_entered" from="Catching_box" to="." method="_on_catching_box_area_entered"]
 [connection signal="area_entered" from="bounce_box" to="." method="_on_bounce_box_area_entered"]

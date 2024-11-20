@@ -31,4 +31,4 @@ func handle_bounces(delta):
 		rotation_degrees *= cos(velocity.x)**-1
 		velocity.x *= speed_loss
 		velocity.y *= speed_loss
-		print(collision)
+		

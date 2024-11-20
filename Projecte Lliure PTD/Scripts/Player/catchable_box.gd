@@ -2,7 +2,7 @@ extends Area2D
 
 class_name catchable_box
 @onready var collision_shape_2d = $CollisionShape2D
-var disabled_timer = 0.5
+var disabled_timer = 0.3
 # Called when the node enters the scene tree for the first time.
 
 
@@ -19,5 +19,6 @@ func die():
 func bounce_off(collision : Vector2):
 	get_parent().velocity = get_parent().velocity.bounce(collision)
 	get_parent().rotation_degrees *= cos(get_parent().velocity.x)**-1
-	get_parent().velocity.x *= get_parent().speed_loss
-	get_parent().velocity.y *= get_parent().speed_loss
+	get_parent().velocity.x *= 1.5
+	get_parent().velocity.y *= 1.5
+	

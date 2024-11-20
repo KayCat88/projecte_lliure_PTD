@@ -1,48 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq7btclnw354o"]
+[gd_scene load_steps=8 format=3 uid="uid://boi3vy4206d3f"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/test_enemy.gd" id="1_7mggs"]
 [ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="1_rohsg"]
+[ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="2_gwe0u"]
+[ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_01226"]
+[ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="4_bey64"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_omot1"]
-size = Vector2(106, 104)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_id7rr"]
+size = Vector2(126, 122)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5c65v"]
-radius = 93.771
+[sub_resource type="CircleShape2D" id="CircleShape2D_48lx0"]
+radius = 30.5941
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu838"]
-size = Vector2(65.14, 66)
+[sub_resource type="CircleShape2D" id="CircleShape2D_jo5dl"]
+radius = 86.3713
 
-[node name="Test_enemy" type="CharacterBody2D" groups=["ENEMIES"]]
-script = ExtResource("1_7mggs")
+[node name="test_enemy" type="CharacterBody2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.101961, 1, 1)
+[node name="Icon" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 0, 1)
 texture = ExtResource("1_rohsg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_omot1")
-disabled = true
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_id7rr")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" parent="." node_paths=PackedStringArray("collider") instance=ExtResource("2_gwe0u")]
+collider = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_5c65v")
+position = Vector2(138, 0)
+shape = SubResource("CircleShape2D_48lx0")
 
-[node name="AttackHitBox" type="Area2D" parent="."]
-position = Vector2(64, 0)
+[node name="hurt_box" parent="." node_paths=PackedStringArray("health_m") instance=ExtResource("3_01226")]
+health_m = NodePath("../health_mananger")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
-position = Vector2(63.57, 1)
-shape = SubResource("RectangleShape2D_gu838")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
+shape = SubResource("CircleShape2D_jo5dl")
 
-[node name="Offset" type="Marker2D" parent="."]
-position = Vector2(1, 0)
-
-[node name="Searched_size_label" type="Label" parent="."]
-offset_left = -17.0
-offset_top = -104.0
-offset_right = 23.0
-offset_bottom = -81.0
-text = "Searches: "
-
-[connection signal="area_entered" from="AttackHitBox" to="." method="_on_attack_hit_box_area_entered"]
+[node name="health_mananger" parent="." instance=ExtResource("4_bey64")]
+health = 1
