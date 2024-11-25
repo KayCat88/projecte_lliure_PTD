@@ -7,7 +7,8 @@ var SPEED = 1000.0
 
 #variables
 var rotation_smoothing : Vector2
-var boost_cooldown = 0.5
+var boost_cooldown = 0.3
+
 
 var direction : Vector2
 var has_ball : bool = true
@@ -74,9 +75,6 @@ func handle_direction():
 func handle_shooting():
 	
 	if Input.is_action_just_pressed("Rclick") and boost_cooldown <= 0 and has_ball == true:
-		
-		await  get_tree().create_timer(0.3).timeout
-		
 		var ball_instance = ball.instantiate()
 		get_parent().add_child(ball_instance)
 		ball_instance.global_position = shot_point.global_position
@@ -87,9 +85,9 @@ func handle_shooting():
 func boost_ball():
 	if Input.is_action_just_pressed("Lclick") and boost_cooldown <= 0:
 		attack_box_collision.disabled = false
-		boost_cooldown = 0.5
+		boost_cooldown = 0.3
 		
-	if boost_cooldown <= 0.3 and attack_box_collision.disabled == false:
+	if boost_cooldown <= 0.1 and attack_box_collision.disabled == false:
 		
 		attack_box_collision.disabled = true
 

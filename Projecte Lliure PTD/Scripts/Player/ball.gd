@@ -5,7 +5,7 @@ var initial_speed = 1000
 var speed_loss = 0.8
 var speed : float
 var direction : Vector2
-var lifetime = 110
+
 
 
 
@@ -18,9 +18,8 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	handle_bounces(delta)
-	lifetime -= delta
-	if lifetime <= 0:
-		queue_free()
+	
+	
 	
 
 	
