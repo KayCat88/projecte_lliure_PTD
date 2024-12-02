@@ -4,3 +4,15 @@ class_name hurt_box
 
 func send_damage(damage : float):
 	health_m.take_damage(damage)
+
+
+
+
+
+
+
+
+
+
+
+

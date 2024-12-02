@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var initial_speed = 1000
+var initial_speed = 500
 var speed_loss = 0.8
 var speed : float
 var direction : Vector2

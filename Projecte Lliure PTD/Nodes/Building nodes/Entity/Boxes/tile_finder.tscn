@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxxurcgw1spqo"]
+
+[ext_resource type="Script" path="res://Scripts/Building nodes/Entity/Boxes/tile_finder.gd" id="1_v1jee"]
+
+[node name="tile_finder" type="Area2D"]
+collision_mask = 18
+monitorable = false
+script = ExtResource("1_v1jee")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

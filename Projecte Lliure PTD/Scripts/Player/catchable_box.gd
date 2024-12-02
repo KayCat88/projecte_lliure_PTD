@@ -3,7 +3,7 @@ extends Area2D
 class_name catchable_box
 @onready var collision_shape_2d = $CollisionShape2D
 var disabled_timer = 0.3
-var redirection_strenght = 700
+var redirection_strenght = 300
 var bounce_boost = 1.5
 # Called when the node enters the scene tree for the first time.
 

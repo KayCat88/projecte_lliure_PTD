@@ -1,35 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://boi3vy4206d3f"]
+[gd_scene load_steps=9 format=3 uid="uid://boi3vy4206d3f"]
 
-[ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="1_rohsg"]
+[ext_resource type="Script" path="res://Scripts/test_enemy.gd" id="1_743gr"]
+[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Environment/PLAYER.png" id="1_paqpj"]
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="2_gwe0u"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_01226"]
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="4_bey64"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_id7rr"]
-size = Vector2(126, 122)
+[sub_resource type="CircleShape2D" id="CircleShape2D_61jle"]
+radius = 17.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_48lx0"]
-radius = 30.5941
+radius = 11.0454
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jo5dl"]
-radius = 86.3713
+radius = 25.0
 
 [node name="test_enemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 7
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_743gr")
 
 [node name="Icon" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 0, 1)
-texture = ExtResource("1_rohsg")
+texture = ExtResource("1_paqpj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_id7rr")
+position = Vector2(0.5, 0)
+shape = SubResource("CircleShape2D_61jle")
 
 [node name="Hitbox" parent="." node_paths=PackedStringArray("collider") instance=ExtResource("2_gwe0u")]
+damage = 0.0
 collider = NodePath("CollisionShape2D")
 damage_cooldown_setter = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(138, 0)
+position = Vector2(38, 0)
 shape = SubResource("CircleShape2D_48lx0")
 
 [node name="hurt_box" parent="." node_paths=PackedStringArray("health_m") instance=ExtResource("3_01226")]
@@ -40,3 +47,12 @@ shape = SubResource("CircleShape2D_jo5dl")
 
 [node name="health_mananger" parent="." instance=ExtResource("4_bey64")]
 health = 1
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -3,5 +3,6 @@
 [ext_resource type="Script" path="res://Scripts/Building nodes/Entity/Boxes/hurt_box.gd" id="1_sbkl4"]
 
 [node name="hurt_box" type="Area2D"]
+collision_mask = 18
 monitoring = false
 script = ExtResource("1_sbkl4")

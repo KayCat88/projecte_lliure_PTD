@@ -1,37 +1,42 @@
-[gd_scene load_steps=9 format=3 uid="uid://dakbbhvyuxtii"]
+[gd_scene load_steps=11 format=3 uid="uid://dakbbhvyuxtii"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_cc63b"]
-[ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="2_7s720"]
+[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Environment/PLAYER.png" id="2_i227v"]
+[ext_resource type="PackedScene" uid="uid://cxxurcgw1spqo" path="res://Nodes/Building nodes/Entity/Boxes/tile_finder.tscn" id="3_7kdg6"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_jk3bt"]
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="4_nkur5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1y7x"]
-size = Vector2(127, 127)
+size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j1ocs"]
-radius = 93.0215
+radius = 25.0799
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_euv5y"]
-radius = 59.0
-height = 180.0
+radius = 25.0
+height = 88.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vhboj"]
-radius = 55.0091
+radius = 15.5242
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfj60"]
+size = Vector2(36, 35)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
-collision_mask = 18
+collision_mask = 2
 script = ExtResource("1_cc63b")
 camera = NodePath("Camera2D")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.00644, 1)
-texture = ExtResource("2_7s720")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_s1y7x")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.2, 1, 0.2, 1)
+scale = Vector2(1.00644, 1)
+texture = ExtResource("2_i227v")
+
 [node name="ShotPoint" type="Marker2D" parent="."]
-position = Vector2(131, 0)
+position = Vector2(36, 0)
 gizmo_extents = 34.1
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -48,7 +53,7 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bounce_box"]
-position = Vector2(140, 0)
+position = Vector2(43, 0)
 shape = SubResource("CapsuleShape2D_euv5y")
 disabled = true
 
@@ -58,6 +63,15 @@ health_m = NodePath("../health_mananger")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
 self_modulate = Color(1, 1, 0, 1)
 shape = SubResource("CircleShape2D_vhboj")
+
+[node name="tile_finder" parent="." node_paths=PackedStringArray("hurtbox") instance=ExtResource("3_7kdg6")]
+monitorable = true
+hurtbox = NodePath("../hurt_box")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tile_finder"]
+self_modulate = Color(1, 0.227451, 1, 1)
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_dfj60")
 
 [node name="health_mananger" parent="." instance=ExtResource("4_nkur5")]
 
