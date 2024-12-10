@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dyp72d2s8hhtb"]
 
 [ext_resource type="Script" path="res://Scripts/Player/ball.gd" id="1_5g5p2"]
-[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Environment/PLAYER.png" id="2_2ioef"]
+[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="2_2ioef"]
 [ext_resource type="Script" path="res://Scripts/Player/catchable_box.gd" id="3_6ke1b"]
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="4_xbo7b"]
 

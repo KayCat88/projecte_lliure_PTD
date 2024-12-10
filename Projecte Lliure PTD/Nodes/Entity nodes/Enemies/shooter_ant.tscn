@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dufc48wtwnjwi"]
+
+[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="1_tcr01"]
+
+[node name="shooter_ant" type="CharacterBody2D"]
+
+[node name="Player" type="Sprite2D" parent="."]
+self_modulate = Color(0.431373, 0.403922, 1, 1)
+texture = ExtResource("1_tcr01")

@@ -17,13 +17,8 @@ func _process(delta):
 		damage_tile_timer = 1
 	elif damage_tile_timer > 0:
 		damage_tile_timer -= delta
-
-
-
-
-
+		
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	print("body found")
 	if body is TileMap:
 		current_data = body.get_cell_tile_data(0, body.get_coords_for_body_rid(body_rid))
 		current_data_value_dps = current_data.get_custom_data_by_layer_id(0)

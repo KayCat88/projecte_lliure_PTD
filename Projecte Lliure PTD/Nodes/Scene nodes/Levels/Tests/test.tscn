@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://b5m741ahy03rp" path="res://Assets/SPRITES/Environment/maxresdefault.jpg" id="1_c1of2"]
 [ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="1_ywtvc"]
 [ext_resource type="PackedScene" uid="uid://c1tk1m8jn6gy7" path="res://Nodes/Entity nodes/Environment/static_body_2d.tscn" id="4_u8h0l"]
-[ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="5_82vmt"]
 [ext_resource type="PackedScene" uid="uid://boi3vy4206d3f" path="res://Nodes/Entity nodes/Enemies/test_enemy.tscn" id="6_pe4qh"]
 [ext_resource type="PackedScene" uid="uid://2kg8s2ikkjga" path="res://Nodes/Entity nodes/UI/interface.tscn" id="7_tm0fe"]
 [ext_resource type="PackedScene" uid="uid://b2wd1wwxrw2aw" path="res://Nodes/Entity nodes/Environment/test_tilemap.tscn" id="8_b8g18"]
+[ext_resource type="PackedScene" uid="uid://c10enwgevwsbd" path="res://Nodes/Entity nodes/Environment/enemy_spawn_manager.tscn" id="8_qfaym"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d85iu"]
 
@@ -35,7 +35,7 @@ position = Vector2(927, 563)
 texture = SubResource("NoiseTexture2D_6mv64")
 
 [node name="Player" parent="." groups=["PLAYER"] instance=ExtResource("1_6bkv6")]
-position = Vector2(4440, -413)
+position = Vector2(5082, 153)
 
 [node name="Area2D" type="Area2D" parent="." groups=["ENEMIES"]]
 
@@ -115,10 +115,10 @@ scale = Vector2(6.6414, 1)
 position = Vector2(2979, 296)
 scale = Vector2(6.6414, 1)
 
-[node name="health_mananger" parent="." instance=ExtResource("5_82vmt")]
-
-[node name="test_enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_pe4qh")]
+[node name="test_enemy" parent="." instance=ExtResource("6_pe4qh")]
 position = Vector2(4909, -714)
-player = NodePath("../Player")
+
+[node name="enemy_spawn_manager" parent="." instance=ExtResource("8_qfaym")]
 
 [editable path="INTERFACE"]
+[editable path="test_enemy"]

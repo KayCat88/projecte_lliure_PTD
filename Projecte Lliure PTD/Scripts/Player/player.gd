@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name player
 #constants
 var SPEED = 660.0
 @export var ACCELERATION = 122.2
@@ -17,12 +18,6 @@ var has_ball : bool = true
 @export var camera : Camera2D
 @onready var shot_point: Marker2D = $ShotPoint
 @onready var attack_box_collision = $bounce_box/CollisionShape2D
-
-
-
-
-
-
 
 #scenes
 var ball = preload("res://Nodes/Entity nodes/Player/ball.tscn")

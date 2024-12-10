@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://boi3vy4206d3f"]
+[gd_scene load_steps=10 format=3 uid="uid://boi3vy4206d3f"]
 
-[ext_resource type="Script" path="res://Scripts/test_enemy.gd" id="1_743gr"]
-[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Environment/PLAYER.png" id="1_paqpj"]
+[ext_resource type="Script" path="res://Scripts/Enemies/test_enemy.gd" id="1_743gr"]
+[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="1_paqpj"]
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="2_gwe0u"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_01226"]
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="4_bey64"]
+[ext_resource type="PackedScene" uid="uid://bfksmdrg6uq4v" path="res://Nodes/Building nodes/Entity/navigation_agent_2d.tscn" id="6_7aqbf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61jle"]
 radius = 17.5
@@ -48,11 +49,5 @@ shape = SubResource("CircleShape2D_jo5dl")
 [node name="health_mananger" parent="." instance=ExtResource("4_bey64")]
 health = 1
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent") instance=ExtResource("6_7aqbf")]
+enemy_parent = NodePath("..")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfksmdrg6uq4v"]
+
+[ext_resource type="Script" path="res://Scripts/Building nodes/Entity/navigation_agent_2d.gd" id="1_hb6bt"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D"]
+debug_enabled = true
+script = ExtResource("1_hb6bt")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

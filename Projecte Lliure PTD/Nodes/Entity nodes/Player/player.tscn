@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dakbbhvyuxtii"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_cc63b"]
-[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Environment/PLAYER.png" id="2_i227v"]
+[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="2_i227v"]
 [ext_resource type="PackedScene" uid="uid://cxxurcgw1spqo" path="res://Nodes/Building nodes/Entity/Boxes/tile_finder.tscn" id="3_7kdg6"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_jk3bt"]
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="4_nkur5"]
@@ -24,6 +24,8 @@ size = Vector2(36, 35)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
 collision_mask = 2
+motion_mode = 1
+wall_min_slide_angle = 0.1309
 script = ExtResource("1_cc63b")
 camera = NodePath("Camera2D")
 

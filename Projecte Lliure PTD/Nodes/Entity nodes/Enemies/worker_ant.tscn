@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://4k2fpfh1flas"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/worker_ant.gd" id="1_cuxhd"]
+[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="2_tdffd"]
+
+[node name="worker_ant" type="CharacterBody2D"]
+script = ExtResource("1_cuxhd")
+
+[node name="Player" type="Sprite2D" parent="."]
+self_modulate = Color(0.431373, 1, 1, 1)
+texture = ExtResource("2_tdffd")
