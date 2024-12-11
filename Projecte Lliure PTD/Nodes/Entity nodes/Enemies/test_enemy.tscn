@@ -18,7 +18,7 @@ radius = 25.0
 
 [node name="test_enemy" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 7
+collision_mask = 9
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_743gr")

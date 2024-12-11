@@ -12,7 +12,8 @@ var difficulty_multiplier : int
 
 #variables from this node
 var waves : int
-var credits : int = 10
+var credits : int = 5
+
 var low_tier_enemy_cost : int = 1
 var high_tier_enemy_cost : int = 2
 var next_enemy_tier_value : int
@@ -22,7 +23,7 @@ var next_enemy_type_value : int
 
 var low_tier_enemies : Array
 var high_tier_enemies : Array
-var enemies_to_spawn_in_this_wave : Array
+var enemies_to_spawn_in_this_wave : Array[PackedScene]
 
 #enemy scenes to spawn
 var worker_ant_spawn : PackedScene = preload("res://Nodes/Entity nodes/Enemies/worker_ant.tscn")
@@ -42,7 +43,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("u"):
+		determine_enemy_spawns()
 		spawn_enemy_wave()
+	if Input.is_action_just_pressed("j"):
+		debug_clear_enemies()
+	
 	
 func calculate_wave_and_credit_numbers():
 	waves = difficulty_tier * difficulty_multiplier
@@ -64,10 +69,17 @@ func determine_enemy_spawns():
 			credits-=low_tier_enemy_cost
 
 func spawn_enemy_wave():
-	for i in enemies_to_spawn_in_this_wave:
-		var enemy_spawn_instance = enemies_to_spawn_in_this_wave[i].instantiate()
+	for enemy_spawn in enemies_to_spawn_in_this_wave:
+		var enemy_spawn_instance = enemy_spawn.instantiate()
 		get_parent().add_child(enemy_spawn_instance)
-		enemy_spawn_instance.global_position = Vector2(randi_range(4800, 5300), randi_range(0, 300))
-		
+		enemy_spawn_instance.global_position = Vector2(randi_range(4400, 5400), randi_range(-850, -300))
+		enemy_spawn_instance.get_player_info_at_spawn()
+	credits = 5
+	enemies_to_spawn_in_this_wave.clear()
+	
+func debug_clear_enemies():
+	for enemy_to_clear in get_parent().get_children():
+		if enemy_to_clear is enemy:
+			enemy_to_clear.queue_free()
 	
 

@@ -7,7 +7,7 @@ var damage_cooldown = 0
 @export var damage_cooldown_setter = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,3 +24,4 @@ func hit_box_on_area_entered(area):
 		area.send_damage(damage)
 		damage_cooldown = damage_cooldown_setter
 		
+

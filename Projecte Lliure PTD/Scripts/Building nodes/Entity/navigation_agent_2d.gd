@@ -1,7 +1,7 @@
 extends NavigationAgent2D
 var player_target : player
 @export var enemy_parent : enemy
-@export var speed : float = 100
+@export var speed : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
