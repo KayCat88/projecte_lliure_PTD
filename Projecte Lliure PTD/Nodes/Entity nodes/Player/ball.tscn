@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyp72d2s8hhtb"]
+[gd_scene load_steps=10 format=3 uid="uid://dyp72d2s8hhtb"]
 
 [ext_resource type="Script" path="res://Scripts/Player/ball.gd" id="1_5g5p2"]
 [ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="2_2ioef"]
 [ext_resource type="Script" path="res://Scripts/Player/catchable_box.gd" id="3_6ke1b"]
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="4_xbo7b"]
+[ext_resource type="PackedScene" uid="uid://ctjaq0pa6l32w" path="res://Nodes/Building nodes/Entity/Boxes/aim_assist.tscn" id="5_1l5ts"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h3tp5"]
 radius = 23.5
@@ -12,7 +13,10 @@ radius = 23.5
 radius = 28.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wsbo0"]
-radius = 28.0713
+radius = 24.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2dk8"]
+size = Vector2(189, 121)
 
 [node name="ball" type="CharacterBody2D"]
 collision_layer = 4
@@ -39,7 +43,17 @@ shape = SubResource("CircleShape2D_ik1iy")
 disabled = true
 
 [node name="Hitbox" parent="." node_paths=PackedStringArray("collider") instance=ExtResource("4_xbo7b")]
+collision_layer = 4
+collision_mask = 8
 collider = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_wsbo0")
+
+[node name="aim_assist" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("5_1l5ts")]
+position = Vector2(41, -5)
+ball = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="aim_assist"]
+position = Vector2(52.5, 5.5)
+shape = SubResource("RectangleShape2D_a2dk8")

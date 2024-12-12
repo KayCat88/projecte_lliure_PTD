@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var initial_speed = 500
+var initial_speed = 300
 var speed_loss = 0.8
 var speed : float
 var direction : Vector2
@@ -30,4 +30,5 @@ func handle_bounces(delta):
 		rotation_degrees *= cos(velocity.x)**-1
 		velocity.x *= speed_loss
 		velocity.y *= speed_loss
+		speed *= speed_loss
 		

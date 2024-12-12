@@ -42,6 +42,7 @@ position = Vector2(38, 0)
 shape = SubResource("CircleShape2D_vgv36")
 
 [node name="hurt_box" parent="." node_paths=PackedStringArray("health_m") instance=ExtResource("5_whq5w")]
+collision_layer = 8
 health_m = NodePath("../health_mananger")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
