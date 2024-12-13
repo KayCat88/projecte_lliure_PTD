@@ -14,10 +14,20 @@ var boost_cooldown = 0.3
 var direction : Vector2
 var has_ball : bool = true
 
+var ball_damage_multiplier = 1
+var ball_speed_loss_multiplier = 1
+
 #nodes
 @export var camera : Camera2D
 @onready var shot_point: Marker2D = $ShotPoint
 @onready var attack_box_collision = $bounce_box/CollisionShape2D
+
+@onready var catching_box = $Catching_box
+@onready var bounce_box = $bounce_box
+@onready var hurt_box_var = $hurt_box
+@onready var tile_finder = $tile_finder
+@onready var health_manager_var = $health_manager
+
 
 #scenes
 var ball = preload("res://Nodes/Entity nodes/Player/ball.tscn")
@@ -41,6 +51,8 @@ func _physics_process(delta: float) -> void:
 	handle_shooting()
 	
 	move_and_slide()
+	
+	print(health_manager_var.health)
 
 func handle_movement():
 	direction = Vector2(cos(rotation), sin(rotation))

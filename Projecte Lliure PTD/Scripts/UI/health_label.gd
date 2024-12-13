@@ -1,6 +1,6 @@
 extends Label
 
-@export var player : health_manager
+@export var player_health : health_manager
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -8,5 +8,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	text = "Health: " + str(player.health)
+	text = "Health: " + str(player_health.health)
 	

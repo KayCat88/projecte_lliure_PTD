@@ -1,7 +1,7 @@
 extends NavigationAgent2D
 var player_target : player
 @export var enemy_parent : enemy
-@export var speed : float = 0
+@export var speed : float = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,12 +9,14 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
-	pass
-func _physics_process(delta):
 	var dir = enemy_parent.make_navigation_calculations(get_next_path_position()) 
-	
-	enemy_parent.velocity = dir * speed
+	if enemy_parent.can_follow == true:
+		
+		enemy_parent.velocity = dir * speed
+	else:
+		enemy_parent.velocity = Vector2.ZERO
 	
 	
 	
@@ -24,3 +26,5 @@ func make_path():
 
 func _on_timer_timeout():
 	make_path()
+
+

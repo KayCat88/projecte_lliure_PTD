@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bfksmdrg6uq4v" path="res://Nodes/Building nodes/Entity/navigation_agent_2d.tscn" id="3_2yjda"]
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="4_i5wuw"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="5_whq5w"]
-[ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="6_m8k7k"]
+[ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_manager.tscn" id="6_m8k7k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1rfpm"]
 radius = 17.5

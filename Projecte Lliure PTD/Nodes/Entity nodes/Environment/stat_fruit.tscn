@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnc1gqki8kje3"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/stat_fruit.gd" id="1_t44ry"]
+[ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="2_33fkp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itg48"]
+radius = 88.2043
+
+[node name="health_stat_fruit" type="Area2D"]
+script = ExtResource("1_t44ry")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_33fkp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_itg48")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

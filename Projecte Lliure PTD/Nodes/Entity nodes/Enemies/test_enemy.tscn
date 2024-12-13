@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://boi3vy4206d3f"]
+[gd_scene load_steps=12 format=3 uid="uid://boi3vy4206d3f"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/test_enemy.gd" id="1_743gr"]
 [ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="1_paqpj"]
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="2_gwe0u"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_01226"]
-[ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="4_bey64"]
+[ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_manager.tscn" id="4_bey64"]
 [ext_resource type="PackedScene" uid="uid://bfksmdrg6uq4v" path="res://Nodes/Building nodes/Entity/navigation_agent_2d.tscn" id="6_7aqbf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61jle"]
@@ -16,12 +16,20 @@ radius = 11.0454
 [sub_resource type="CircleShape2D" id="CircleShape2D_jo5dl"]
 radius = 25.0
 
-[node name="test_enemy" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_x4j70"]
+radius = 241.019
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_epn1s"]
+radius = 47.0956
+
+[node name="test_enemy" type="CharacterBody2D" node_paths=PackedStringArray("following_zone", "attacking_zone")]
 collision_layer = 8
 collision_mask = 9
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_743gr")
+following_zone = NodePath("Area2D")
+attacking_zone = NodePath("Area2D2")
 
 [node name="Icon" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 0, 1)
@@ -52,3 +60,17 @@ health = 1
 
 [node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent") instance=ExtResource("6_7aqbf")]
 enemy_parent = NodePath("..")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_x4j70")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_epn1s")

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="2_i227v"]
 [ext_resource type="PackedScene" uid="uid://cxxurcgw1spqo" path="res://Nodes/Building nodes/Entity/Boxes/tile_finder.tscn" id="3_7kdg6"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_jk3bt"]
-[ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_mananger.tscn" id="4_nkur5"]
+[ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_manager.tscn" id="4_nkur5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1y7x"]
 size = Vector2(32, 32)
@@ -60,7 +60,7 @@ shape = SubResource("CapsuleShape2D_euv5y")
 disabled = true
 
 [node name="hurt_box" parent="." node_paths=PackedStringArray("health_m") instance=ExtResource("3_jk3bt")]
-health_m = NodePath("../health_mananger")
+health_m = NodePath("../health_manager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
 self_modulate = Color(1, 1, 0, 1)
@@ -75,7 +75,7 @@ self_modulate = Color(1, 0.227451, 1, 1)
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_dfj60")
 
-[node name="health_mananger" parent="." instance=ExtResource("4_nkur5")]
+[node name="health_manager" parent="." instance=ExtResource("4_nkur5")]
 
 [connection signal="area_entered" from="Catching_box" to="." method="_on_catching_box_area_entered"]
 [connection signal="area_entered" from="bounce_box" to="." method="_on_bounce_box_area_entered"]

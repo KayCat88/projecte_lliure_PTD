@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://2p0ieeimxtgf"]
-
-[ext_resource type="Script" path="res://Scripts/Building nodes/Entity/Managers/health_mananger.gd" id="1_rmipi"]
-
-[node name="health_mananger" type="Node"]
-script = ExtResource("1_rmipi")
