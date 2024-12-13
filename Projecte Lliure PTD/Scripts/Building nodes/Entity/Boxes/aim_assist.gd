@@ -1,33 +1,45 @@
-extends Area2D
+extends Node2D
 
-var assist_strenght : float = 5
+var assist_strenght : float = 10
 var enemy_selected : enemy
 @export var ball : CharacterBody2D
 var dir : Vector2
+var raycast_set : Array[RayCast2D]
+@onready var up_raycast = $up_raycast
+@onready var up_mid_raycast = $up_mid_raycast
+@onready var mid_raycast = $mid_raycast
+@onready var down_mid_raycast = $down_mid_raycast
+@onready var down_raycast = $down_raycast
+var raycast_check : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	raycast_set = [up_raycast, up_mid_raycast, mid_raycast, down_mid_raycast, down_raycast]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	redirect()
+	search_for_enemies()
 
 
-func _on_body_entered(body):
 	
-	if body is enemy:
-		
-		enemy_selected = body
-		
-		
-func _on_body_exited(body):
+func search_for_enemies():
 	
-	enemy_selected = null
-
+	
+	for raycast in raycast_set:
+		print(raycast.get_collider())
+		if raycast.get_collider() is enemy:
+			raycast_check = 5
+			enemy_selected = raycast.get_collider()
+			
+		else:
+			raycast_check -= 1
+	if raycast_check <= 0:
+		enemy_selected = null
+	
 func redirect():
-	print(enemy_selected)
+	
 	if enemy_selected != null:
 		dir = Vector2(enemy_selected.global_position.x - ball.global_position.x, enemy_selected.global_position.y - ball.global_position.y).normalized()
 		#ball.velocity = dir * ball.speed

@@ -2,11 +2,25 @@
 
 [ext_resource type="Script" path="res://Scripts/Building nodes/Entity/Boxes/aim_assist.gd" id="1_5qdrx"]
 
-[node name="aim_assist" type="Area2D"]
-collision_layer = 4
-collision_mask = 8
-monitorable = false
+[node name="aim_assist" type="Node2D"]
 script = ExtResource("1_5qdrx")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="up_raycast" type="RayCast2D" parent="."]
+target_position = Vector2(150, -60)
+collision_mask = 10
+
+[node name="up_mid_raycast" type="RayCast2D" parent="."]
+target_position = Vector2(185, -30)
+collision_mask = 8
+
+[node name="mid_raycast" type="RayCast2D" parent="."]
+target_position = Vector2(200, 0)
+collision_mask = 8
+
+[node name="down_mid_raycast" type="RayCast2D" parent="."]
+target_position = Vector2(185, 30)
+collision_mask = 8
+
+[node name="down_raycast" type="RayCast2D" parent="."]
+target_position = Vector2(150, 60)
+collision_mask = 8
