@@ -87,6 +87,8 @@ func handle_shooting():
 		ball_instance.global_position = shot_point.global_position
 		ball_instance.velocity = direction*ball_instance.initial_speed
 		ball_instance.rotation = rotation
+		ball_instance.damage *= ball_damage_multiplier
+		ball_instance.speed_loss /= 1
 		has_ball = false
 	
 func boost_ball():
