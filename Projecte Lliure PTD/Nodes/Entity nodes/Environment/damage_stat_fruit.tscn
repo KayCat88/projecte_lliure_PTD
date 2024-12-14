@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://3w41bqamsskj"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/stat_fruit.gd" id="1_nd8m8"]
+[ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="2_5u4ou"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itg48"]
+radius = 88.2043
+
+[node name="damage_stat_fruit" type="Area2D"]
+script = ExtResource("1_nd8m8")
+stat_to_upgrade = 3
+
+[node name="Icon" type="Sprite2D" parent="."]
+self_modulate = Color(0, 1, 1, 1)
+position = Vector2(0, -4)
+texture = ExtResource("2_5u4ou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_itg48")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

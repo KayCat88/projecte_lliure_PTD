@@ -42,7 +42,7 @@ shape = SubResource("CircleShape2D_61jle")
 [node name="Hitbox" parent="." node_paths=PackedStringArray("collider") instance=ExtResource("2_gwe0u")]
 damage = 0.0
 collider = NodePath("CollisionShape2D")
-damage_cooldown_setter = 1
+damage_cooldown_setter = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(38, 0)
@@ -56,7 +56,6 @@ health_m = NodePath("../health_mananger")
 shape = SubResource("CircleShape2D_jo5dl")
 
 [node name="health_mananger" parent="." instance=ExtResource("4_bey64")]
-health = 1
 
 [node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent") instance=ExtResource("6_7aqbf")]
 enemy_parent = NodePath("..")

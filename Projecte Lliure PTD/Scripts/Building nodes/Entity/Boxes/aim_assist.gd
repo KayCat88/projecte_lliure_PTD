@@ -28,7 +28,7 @@ func search_for_enemies():
 	
 	
 	for raycast in raycast_set:
-		print(raycast.get_collider())
+		
 		if raycast.get_collider() is enemy:
 			raycast_check = 5
 			enemy_selected = raycast.get_collider()

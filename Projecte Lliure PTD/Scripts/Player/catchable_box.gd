@@ -26,4 +26,6 @@ func bounce_off(collision : Vector2):
 	get_parent().velocity.y = redirection_strenght*collision.y
 	get_parent().velocity.x *= bounce_boost
 	get_parent().velocity.y *= bounce_boost
+	get_parent().speed *= bounce_boost
+	get_parent().update_damage()
 	

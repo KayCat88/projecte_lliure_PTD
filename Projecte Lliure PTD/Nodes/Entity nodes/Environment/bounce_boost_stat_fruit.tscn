@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4w27tqqkyvn0"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/stat_fruit.gd" id="1_sgkie"]
+[ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="2_abu6w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itg48"]
+radius = 88.2043
+
+[node name="bounce_boost_stat_fruit" type="Area2D"]
+script = ExtResource("1_sgkie")
+stat_to_upgrade = 2
+
+[node name="Icon" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(0, -4)
+texture = ExtResource("2_abu6w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_itg48")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

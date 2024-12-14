@@ -7,6 +7,8 @@ var calculated_next_path_position
 var can_follow : bool
 var can_attack : bool 
 
+@onready var health_mananger = $health_mananger
+
 @export var following_zone : Area2D
 @export var attacking_zone : Area2D
 
@@ -39,7 +41,7 @@ func make_navigation_calculations(raw_next_path_position : Vector2) -> Vector2:
 func set_behavior():
 	if following_zone.get_overlapping_bodies().size() > 0 and following_zone.get_overlapping_bodies()[0] is player and can_attack == false:
 		can_follow = true
-		print("x")
+		
 	else: 
 		can_follow = false
 	if attacking_zone.get_overlapping_bodies().size() > 0 and attacking_zone.get_overlapping_bodies()[0] is player:

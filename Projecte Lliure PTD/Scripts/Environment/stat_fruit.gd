@@ -8,14 +8,14 @@ var stat_upgrade_value_list : Array
 
 var health_upgrade_value = 1.5
 var speed_upgrade_value = 1.5
-var speed_loss_upgrade_value = 1.5
+var boost_speed_upgrade_value = 1.5
 var damage_upgrade_value = 1.5
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	stat_upgrade_value_list = [health_upgrade_value, speed_upgrade_value, speed_loss_upgrade_value, damage_upgrade_value]
+	stat_upgrade_value_list = [health_upgrade_value, speed_upgrade_value, boost_speed_upgrade_value, damage_upgrade_value]
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,6 +32,6 @@ func _on_body_entered(body):
 		elif stat_to_upgrade == 1:
 			body.SPEED *= speed_upgrade_value
 		elif stat_to_upgrade == 2:
-			body.ball_speed_loss_multiplier *= speed_loss_upgrade_value
+			body.bounce_boost_multiplier *= boost_speed_upgrade_value
 		elif stat_to_upgrade == 3:
 			body.ball_damage_multiplier *= damage_upgrade_value
