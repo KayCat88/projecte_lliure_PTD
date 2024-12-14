@@ -23,7 +23,7 @@ func _process(delta):
 
 func hit_box_on_area_entered(area):
 	if area is hurt_box and found_hurt_box == null and can_hurt == true:
-		print("x")
+		
 		found_hurt_box = area
 		found_hurt_box.send_damage(damage)
 		damage_cooldown = damage_cooldown_setter
@@ -33,5 +33,5 @@ func hit_box_on_area_entered(area):
 
 
 func _on_area_exited(area):
-	print("y")
+	
 	found_hurt_box = null

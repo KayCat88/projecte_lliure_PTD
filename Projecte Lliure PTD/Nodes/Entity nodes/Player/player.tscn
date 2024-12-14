@@ -22,12 +22,11 @@ radius = 15.5242
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dfj60"]
 size = Vector2(36, 35)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
+[node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 motion_mode = 1
 wall_min_slide_angle = 0.1309
 script = ExtResource("1_cc63b")
-camera = NodePath("Camera2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_s1y7x")

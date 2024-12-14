@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4k2fpfh1flas"]
+[gd_scene load_steps=12 format=3 uid="uid://4k2fpfh1flas"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/worker_ant.gd" id="1_cuxhd"]
 [ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="2_tdffd"]
@@ -7,39 +7,53 @@
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="5_m4erf"]
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_manager.tscn" id="6_i80v2"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtpao"]
+radius = 21.0238
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_5rr3x"]
 radius = 17.5
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wtpao"]
-radius = 11.0454
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46nlx"]
 radius = 25.0
 
-[node name="worker_ant" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4fw10"]
+radius = 968.149
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8hjlg"]
+radius = 26.0192
+
+[node name="worker_ant" type="CharacterBody2D" node_paths=PackedStringArray("following_zone", "attacking_zone")]
 collision_layer = 8
 collision_mask = 10
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_cuxhd")
+following_zone = NodePath("Area2D")
+attacking_zone = NodePath("Area2D2")
 
-[node name="Player" type="Sprite2D" parent="."]
+[node name="rotator" type="Marker2D" parent="."]
+
+[node name="Player" type="Sprite2D" parent="rotator"]
 self_modulate = Color(0.431373, 1, 1, 1)
 texture = ExtResource("2_tdffd")
 
-[node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent") instance=ExtResource("3_lakqw")]
+[node name="Hitbox" parent="rotator" node_paths=PackedStringArray("collider") instance=ExtResource("4_mwpvh")]
+damage = 3.0
+collider = NodePath("CollisionShape2D")
+damage_cooldown_setter = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rotator/Hitbox"]
+position = Vector2(41, 0)
+shape = SubResource("CircleShape2D_wtpao")
+
+[node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent", "rotator") instance=ExtResource("3_lakqw")]
 enemy_parent = NodePath("..")
+speed = 100.0
+rotator = NodePath("../rotator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
 shape = SubResource("CircleShape2D_5rr3x")
-
-[node name="Hitbox" parent="." node_paths=PackedStringArray("collider") instance=ExtResource("4_mwpvh")]
-damage = 0.0
-collider = NodePath("CollisionShape2D")
-damage_cooldown_setter = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(38, 0)
-shape = SubResource("CircleShape2D_wtpao")
 
 [node name="hurt_box" parent="." node_paths=PackedStringArray("health_m") instance=ExtResource("5_m4erf")]
 collision_layer = 8
@@ -58,3 +72,18 @@ offset_top = -38.0
 offset_right = 20.0
 offset_bottom = -15.0
 text = "wORKER ANT"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4fw10")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(28, 0)
+shape = SubResource("CircleShape2D_8hjlg")

@@ -88,6 +88,7 @@ func handle_shooting():
 		ball_instance.velocity = direction*ball_instance.initial_speed
 		ball_instance.rotation = rotation
 		ball_instance.damage *= ball_damage_multiplier
+		ball_instance.update_damage()
 		has_ball = false
 	
 func boost_ball():
@@ -115,5 +116,6 @@ func _on_catching_box_area_entered(area):
 
 func _on_bounce_box_area_entered(area):
 	if area is catchable_box:
-		area.bounce_off(Vector2(cos(rotation), sin(rotation)))
 		area.bounce_boost *= bounce_boost_multiplier
+		area.bounce_off(Vector2(cos(rotation), sin(rotation)))
+		

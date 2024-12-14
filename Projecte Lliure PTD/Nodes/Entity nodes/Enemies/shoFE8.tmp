@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dufc48wtwnjwi"]
+[gd_scene load_steps=8 format=3 uid="uid://dufc48wtwnjwi"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/shooter_ant.gd" id="1_fu7r2"]
 [ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="1_tcr01"]
@@ -12,32 +12,17 @@ radius = 17.5
 [sub_resource type="CircleShape2D" id="CircleShape2D_7b6t6"]
 radius = 25.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_m4qpx"]
-radius = 617.263
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2pjbe"]
-radius = 287.063
-
-[node name="shooter_ant" type="CharacterBody2D" node_paths=PackedStringArray("following_zone", "attacking_zone")]
+[node name="shooter_ant" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 10
 script = ExtResource("1_fu7r2")
-following_zone = NodePath("Area2D")
-attacking_zone = NodePath("Area2D2")
 
-[node name="rotator" type="Marker2D" parent="."]
-
-[node name="shot_point" type="Marker2D" parent="rotator"]
-position = Vector2(29, 0)
-
-[node name="Player" type="Sprite2D" parent="rotator"]
+[node name="Player" type="Sprite2D" parent="."]
 self_modulate = Color(0.431373, 0.403922, 1, 1)
 texture = ExtResource("1_tcr01")
 
-[node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent", "rotator") instance=ExtResource("3_2yjda")]
+[node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent") instance=ExtResource("3_2yjda")]
 enemy_parent = NodePath("..")
-speed = 100.0
-rotator = NodePath("../rotator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
@@ -60,17 +45,3 @@ offset_top = -38.0
 offset_right = 20.0
 offset_bottom = -15.0
 text = "shooter ANT"
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 8
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_m4qpx")
-
-[node name="Area2D2" type="Area2D" parent="."]
-collision_layer = 8
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-shape = SubResource("CircleShape2D_2pjbe")

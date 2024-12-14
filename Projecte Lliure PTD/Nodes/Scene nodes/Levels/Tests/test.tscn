@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="1_ywtvc"]
 [ext_resource type="PackedScene" uid="uid://bnc1gqki8kje3" path="res://Nodes/Entity nodes/Environment/health_stat_fruit.tscn" id="2_ah7us"]
 [ext_resource type="PackedScene" uid="uid://c1tk1m8jn6gy7" path="res://Nodes/Entity nodes/Environment/static_body_2d.tscn" id="4_u8h0l"]
-[ext_resource type="PackedScene" uid="uid://boi3vy4206d3f" path="res://Nodes/Entity nodes/Enemies/test_enemy.tscn" id="6_pe4qh"]
 [ext_resource type="PackedScene" uid="uid://2kg8s2ikkjga" path="res://Nodes/Entity nodes/UI/interface.tscn" id="7_tm0fe"]
 [ext_resource type="PackedScene" uid="uid://b2wd1wwxrw2aw" path="res://Nodes/Entity nodes/Environment/test_tilemap.tscn" id="8_b8g18"]
 [ext_resource type="PackedScene" uid="uid://c10enwgevwsbd" path="res://Nodes/Entity nodes/Environment/enemy_spawn_manager.tscn" id="8_qfaym"]
 [ext_resource type="PackedScene" uid="uid://dtv8lt58x4wy5" path="res://Nodes/Entity nodes/Environment/speed_stat_fruit.tscn" id="10_wv5r0"]
 [ext_resource type="PackedScene" uid="uid://b4w27tqqkyvn0" path="res://Nodes/Entity nodes/Environment/bounce_boost_stat_fruit.tscn" id="11_ushpw"]
 [ext_resource type="PackedScene" uid="uid://3w41bqamsskj" path="res://Nodes/Entity nodes/Environment/damage_stat_fruit.tscn" id="12_5x6xj"]
+[ext_resource type="PackedScene" uid="uid://dufc48wtwnjwi" path="res://Nodes/Entity nodes/Enemies/shooter_ant.tscn" id="12_8phkj"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d85iu"]
 
@@ -122,12 +122,6 @@ scale = Vector2(6.6414, 1)
 position = Vector2(2979, 296)
 scale = Vector2(6.6414, 1)
 
-[node name="test_enemy" parent="." instance=ExtResource("6_pe4qh")]
-position = Vector2(4909, -714)
-
-[node name="Hitbox" parent="test_enemy" index="2"]
-damage_cooldown_setter = 0.1
-
 [node name="enemy_spawn_manager" parent="." instance=ExtResource("8_qfaym")]
 
 [node name="speed_stat_fruit" parent="." instance=ExtResource("10_wv5r0")]
@@ -139,6 +133,8 @@ position = Vector2(4942, -35)
 [node name="damage_stat_fruit" parent="." instance=ExtResource("12_5x6xj")]
 position = Vector2(5170, -33)
 
+[node name="shooter_ant" parent="." instance=ExtResource("12_8phkj")]
+position = Vector2(4448, -673)
+
 [editable path="Player"]
 [editable path="INTERFACE"]
-[editable path="test_enemy"]

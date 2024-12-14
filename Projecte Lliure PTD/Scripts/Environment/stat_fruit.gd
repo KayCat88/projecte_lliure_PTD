@@ -35,3 +35,4 @@ func _on_body_entered(body):
 			body.bounce_boost_multiplier *= boost_speed_upgrade_value
 		elif stat_to_upgrade == 3:
 			body.ball_damage_multiplier *= damage_upgrade_value
+		queue_free()
