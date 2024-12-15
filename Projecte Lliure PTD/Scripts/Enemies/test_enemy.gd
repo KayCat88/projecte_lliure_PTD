@@ -16,11 +16,9 @@ var can_attack : bool
 
 func _ready():
 	get_player_info_at_spawn()
-func _process(delta):
-	set_behavior()
-	move_and_slide()
+
 func _physics_process(delta):
-	
+	set_behavior()
 	move_and_slide()
 	
 	

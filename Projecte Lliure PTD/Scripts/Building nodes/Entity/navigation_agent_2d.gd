@@ -3,12 +3,12 @@ var player_target : player
 @export var enemy_parent : enemy
 @export var speed : float = 10
 @export var rotator : Marker2D
-
+var deceleration : float
 
 var rotation_smoothing 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	deceleration = speed/50
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +22,8 @@ func _process(delta):
 		
 		enemy_parent.velocity = dir * speed 
 	else:
-		enemy_parent.velocity = Vector2.ZERO
+		enemy_parent.velocity.x = move_toward(enemy_parent.velocity.x, Vector2.ZERO.x, deceleration)
+		enemy_parent.velocity.y = move_toward(enemy_parent.velocity.y, Vector2.ZERO.y, deceleration)
 	
 	
 	

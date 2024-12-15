@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbo3et83fhbve"]
+[gd_scene load_steps=13 format=3 uid="uid://dbo3et83fhbve"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/warrior_ant.gd" id="1_1hmr1"]
 [ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="1_ludys"]
@@ -7,39 +7,57 @@
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="5_fnsrv"]
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_manager.tscn" id="6_cgfgv"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7qcip"]
+radius = 28.0179
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ufra"]
 radius = 17.5
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7qcip"]
-radius = 11.0454
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv26j"]
 radius = 25.0
 
-[node name="warrior_ant" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_y42hn"]
+radius = 617.263
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_73nil"]
+radius = 373.005
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xrknj"]
+radius = 71.0
+
+[node name="warrior_ant" type="CharacterBody2D" node_paths=PackedStringArray("melee_zone", "following_zone", "attacking_zone")]
 collision_layer = 8
 collision_mask = 10
 script = ExtResource("1_1hmr1")
+melee_zone = NodePath("Area2D3")
+following_zone = NodePath("Area2D")
+attacking_zone = NodePath("Area2D2")
 
-[node name="Player" type="Sprite2D" parent="."]
+[node name="rotator" type="Marker2D" parent="."]
+
+[node name="shot_point" type="Marker2D" parent="rotator"]
+
+[node name="Player" type="Sprite2D" parent="rotator"]
 self_modulate = Color(0.431373, 0, 0, 1)
 texture = ExtResource("1_ludys")
 
-[node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent") instance=ExtResource("3_gyxnl")]
+[node name="Hitbox" parent="rotator" node_paths=PackedStringArray("collider") instance=ExtResource("4_hompq")]
+damage = 3.0
+collider = NodePath("CollisionShape2D")
+damage_cooldown_setter = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rotator/Hitbox"]
+position = Vector2(54, -1)
+shape = SubResource("CircleShape2D_7qcip")
+
+[node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent", "rotator") instance=ExtResource("3_gyxnl")]
 enemy_parent = NodePath("..")
+speed = 50.0
+rotator = NodePath("../rotator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
 shape = SubResource("CircleShape2D_8ufra")
-
-[node name="Hitbox" parent="." node_paths=PackedStringArray("collider") instance=ExtResource("4_hompq")]
-damage = 0.0
-collider = NodePath("CollisionShape2D")
-damage_cooldown_setter = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(38, 0)
-shape = SubResource("CircleShape2D_7qcip")
 
 [node name="hurt_box" parent="." node_paths=PackedStringArray("health_m") instance=ExtResource("5_fnsrv")]
 collision_layer = 8
@@ -49,7 +67,6 @@ health_m = NodePath("../health_mananger")
 shape = SubResource("CircleShape2D_rv26j")
 
 [node name="health_mananger" parent="." instance=ExtResource("6_cgfgv")]
-health = 1
 
 [node name="Label" type="Label" parent="."]
 self_modulate = Color(1, 0.0196078, 0, 1)
@@ -58,3 +75,23 @@ offset_top = -38.0
 offset_right = 20.0
 offset_bottom = -15.0
 text = "warrior ANT"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_y42hn")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_73nil")
+
+[node name="Area2D3" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+shape = SubResource("CircleShape2D_xrknj")

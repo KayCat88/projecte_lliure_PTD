@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cnjvf8p2nji8f"]
+[gd_scene load_steps=15 format=3 uid="uid://cnjvf8p2nji8f"]
 
 [ext_resource type="PackedScene" uid="uid://dakbbhvyuxtii" path="res://Nodes/Entity nodes/Player/player.tscn" id="1_6bkv6"]
 [ext_resource type="Texture2D" uid="uid://b5m741ahy03rp" path="res://Assets/SPRITES/Environment/maxresdefault.jpg" id="1_c1of2"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dtv8lt58x4wy5" path="res://Nodes/Entity nodes/Environment/speed_stat_fruit.tscn" id="10_wv5r0"]
 [ext_resource type="PackedScene" uid="uid://b4w27tqqkyvn0" path="res://Nodes/Entity nodes/Environment/bounce_boost_stat_fruit.tscn" id="11_ushpw"]
 [ext_resource type="PackedScene" uid="uid://3w41bqamsskj" path="res://Nodes/Entity nodes/Environment/damage_stat_fruit.tscn" id="12_5x6xj"]
-[ext_resource type="PackedScene" uid="uid://dufc48wtwnjwi" path="res://Nodes/Entity nodes/Enemies/shooter_ant.tscn" id="12_8phkj"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d85iu"]
 
@@ -132,9 +131,6 @@ position = Vector2(4942, -35)
 
 [node name="damage_stat_fruit" parent="." instance=ExtResource("12_5x6xj")]
 position = Vector2(5170, -33)
-
-[node name="shooter_ant" parent="." instance=ExtResource("12_8phkj")]
-position = Vector2(4448, -673)
 
 [editable path="Player"]
 [editable path="INTERFACE"]

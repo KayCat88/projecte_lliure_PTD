@@ -39,9 +39,8 @@ texture = ExtResource("1_paqpj")
 position = Vector2(0.5, 0)
 shape = SubResource("CircleShape2D_61jle")
 
-[node name="Hitbox" parent="." node_paths=PackedStringArray("collider") instance=ExtResource("2_gwe0u")]
+[node name="Hitbox" parent="." instance=ExtResource("2_gwe0u")]
 damage = 0.0
-collider = NodePath("CollisionShape2D")
 damage_cooldown_setter = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]

@@ -51,7 +51,7 @@ health_m = NodePath("../health_mananger")
 shape = SubResource("CircleShape2D_7b6t6")
 
 [node name="health_mananger" parent="." instance=ExtResource("6_m8k7k")]
-health = 1
+health = 5
 
 [node name="Label" type="Label" parent="."]
 self_modulate = Color(1, 0.0196078, 0, 1)

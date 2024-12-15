@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://co1bd6vpn51jj"]
+[gd_scene load_steps=13 format=3 uid="uid://co1bd6vpn51jj"]
 
 [ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="1_qphhd"]
 [ext_resource type="Script" path="res://Scripts/Enemies/larva.gd" id="1_xigeu"]
@@ -11,34 +11,51 @@
 radius = 17.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p4pye"]
-radius = 11.0454
+radius = 109.041
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xcjfs"]
 radius = 25.0
 
-[node name="larva" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_70kbu"]
+radius = 617.263
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxjg4"]
+radius = 373.005
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8s22a"]
+radius = 97.0824
+
+[node name="larva" type="CharacterBody2D" node_paths=PackedStringArray("melee_zone", "following_zone", "attacking_zone")]
 collision_layer = 8
 collision_mask = 10
 script = ExtResource("1_xigeu")
+melee_zone = NodePath("Area2D3")
+following_zone = NodePath("Area2D")
+attacking_zone = NodePath("Area2D2")
 
-[node name="Player" type="Sprite2D" parent="."]
+[node name="rotator" type="Marker2D" parent="."]
+
+[node name="shot_point" type="Marker2D" parent="rotator"]
+
+[node name="Player" type="Sprite2D" parent="rotator"]
 self_modulate = Color(0.431373, 0, 1, 1)
 texture = ExtResource("1_qphhd")
 
-[node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent") instance=ExtResource("3_5scn4")]
+[node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent", "rotator") instance=ExtResource("3_5scn4")]
 enemy_parent = NodePath("..")
+speed = 30.0
+rotator = NodePath("../rotator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
 shape = SubResource("CircleShape2D_6y46r")
 
 [node name="Hitbox" parent="." node_paths=PackedStringArray("collider") instance=ExtResource("4_f80dp")]
-damage = 0.0
+damage = 5.0
 collider = NodePath("CollisionShape2D")
-damage_cooldown_setter = 1
+damage_cooldown_setter = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(38, 0)
 shape = SubResource("CircleShape2D_p4pye")
 
 [node name="hurt_box" parent="." node_paths=PackedStringArray("health_m") instance=ExtResource("5_fkiv8")]
@@ -49,7 +66,6 @@ health_m = NodePath("../health_mananger")
 shape = SubResource("CircleShape2D_xcjfs")
 
 [node name="health_mananger" parent="." instance=ExtResource("6_86l5i")]
-health = 1
 
 [node name="Label" type="Label" parent="."]
 self_modulate = Color(1, 0.0196078, 0, 1)
@@ -58,3 +74,23 @@ offset_top = -38.0
 offset_right = 20.0
 offset_bottom = -15.0
 text = "larva"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_70kbu")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_xxjg4")
+
+[node name="Area2D3" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+shape = SubResource("CircleShape2D_8s22a")
