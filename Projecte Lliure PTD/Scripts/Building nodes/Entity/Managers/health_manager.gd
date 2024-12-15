@@ -1,7 +1,7 @@
 extends Node2D
 class_name health_manager
 
-var knockback_strenght = 1000
+@export var knockback_strenght = 1000
 @export var health : int = 10
 var dir : Vector2
 

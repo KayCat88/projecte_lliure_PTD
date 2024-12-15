@@ -20,7 +20,7 @@ func _physics_process(delta):
 	move_and_slide()
 	handle_bounces(delta)
 	
-	print(str(damage), " ", str(hitbox.damage))
+	
 	
 	
 	

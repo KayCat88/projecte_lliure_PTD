@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf51tfr7wabiy"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/world_managers/world.gd" id="1_puku7"]
+[ext_resource type="PackedScene" uid="uid://c10enwgevwsbd" path="res://Nodes/Entity nodes/Environment/enemy_spawn_manager.tscn" id="2_42qjr"]
+[ext_resource type="PackedScene" uid="uid://bj4wd515r7eo7" path="res://Nodes/Entity nodes/Environment/reward_manager.tscn" id="3_onw2l"]
+[ext_resource type="PackedScene" uid="uid://dh1xc1jai3h3p" path="res://Nodes/Entity nodes/Environment/tile_manager.tscn" id="4_ryt7f"]
+[ext_resource type="PackedScene" uid="uid://dakbbhvyuxtii" path="res://Nodes/Entity nodes/Player/player.tscn" id="5_7c13d"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_puku7")
+
+[node name="enemy_spawn_manager" parent="." instance=ExtResource("2_42qjr")]
+
+[node name="reward_manager" parent="." instance=ExtResource("3_onw2l")]
+
+[node name="tile_manager" parent="." node_paths=PackedStringArray("player_instance") instance=ExtResource("4_ryt7f")]
+player_instance = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("5_7c13d")]

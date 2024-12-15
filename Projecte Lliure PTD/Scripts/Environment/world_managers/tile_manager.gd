@@ -1,4 +1,6 @@
 extends Node
+class_name tile_manager
+
 
 @export var tilemap : TileMap
 @export var player_instance : player
@@ -10,7 +12,8 @@ var pattern_index : int
 var player_spawn_pos : Vector2
 var y_enemy_spawn_boundaries : Vector2
 var x_enemy_spawn_boundaries : Vector2
-
+var room_number : int
+var zone_number : int
 # first element is the pattern index, the second the player spawn position, the third the y boundaries and the fourth the x boundaries
 var pattern_0 : Array = [0, Vector2(373,173), Vector2(), Vector2()]
 
@@ -31,11 +34,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	print(room_number)
+	print(zone_number)
 	if Input.is_action_just_pressed("j"):
-		move_player()
+		draw_tiles()
 
 func draw_tiles():
-	
+	room_number += 1
+	zone_number = ((room_number-1)/5) + 1
 	tilemap.set_pattern(0, Vector2i.ZERO, tilemap.tile_set.get_pattern(pattern_index))
 	
 func select_new_pattern():
