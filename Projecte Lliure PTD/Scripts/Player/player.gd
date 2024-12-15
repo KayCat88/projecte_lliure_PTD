@@ -33,7 +33,7 @@ var bounce_boost_multiplier = 1
 var ball = preload("res://Nodes/Entity nodes/Player/ball.tscn")
 
 func _process(delta: float) -> void:
-	
+	print(health_manager_var.health)
 	if boost_cooldown > -1:
 		boost_cooldown -= delta
 		
