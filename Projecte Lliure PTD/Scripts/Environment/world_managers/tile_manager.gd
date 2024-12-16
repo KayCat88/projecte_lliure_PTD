@@ -21,7 +21,7 @@ var pattern_0 : Array = [0, Vector2(590,570), Vector2(144, 580), Vector2(110, 10
 var pattern_1 : Array = [1, Vector2(590,570), Vector2(144, 580), Vector2(110, 1050)]
 
 
-var pattern_2 : Array = [1, Vector2(590,570), Vector2(144, 580), Vector2(110, 1050)]
+var pattern_2 : Array = [2, Vector2(580,320), Vector2(150, 490), Vector2(155, 1000)]
 
 
 # Called when the node enters the scene tree for the first time.

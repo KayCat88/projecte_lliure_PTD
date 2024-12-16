@@ -1,4 +1,8 @@
-extends TileMap
+extends Node
+
+var room_number : int
+var zone_number : int
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,5 +12,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("Lclick"):
-		print(get_global_mouse_position())
+	pass
+
+func load_run():
+	pass
+
+func load_menu():
+	pass
+	
+func new_level():
+	pass

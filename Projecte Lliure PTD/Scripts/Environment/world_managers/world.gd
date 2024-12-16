@@ -9,8 +9,10 @@ extends Node2D
 var is_scene_ready : bool = false
 var are_enemies_ready : bool = false
 var level_finished : bool
+var game_master : Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	game_master = get_parent()
 	set_enemy_boundaries()
 	scene_preparation_timer.start()
 
@@ -22,8 +24,7 @@ func _process(delta):
 	new_scene()
 	print(enemy_spawn_manager_var.has_level_been_cleared)
 	if enemy_spawn_manager_var.has_level_been_cleared == true:
-		scene_preparation_timer.start()
-		enemy_spawn_manager_var.has_level_been_cleared = false
+		game_master.new_level()
 		
 	
 func set_enemy_boundaries():

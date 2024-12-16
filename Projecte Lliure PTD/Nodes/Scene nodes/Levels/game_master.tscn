@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu033re8nvpne"]
+
+[ext_resource type="Script" path="res://Nodes/Scene nodes/Levels/game_master.gd" id="1_lsphr"]
+
+[node name="game_master" type="Node"]
+script = ExtResource("1_lsphr")
