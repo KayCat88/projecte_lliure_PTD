@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/Environment/world_managers/tile_manager.gd" id="1_jf4hc"]
 [ext_resource type="PackedScene" uid="uid://b2wd1wwxrw2aw" path="res://Nodes/Entity nodes/Environment/test_tilemap.tscn" id="2_jikhn"]
 
-[node name="tile_manager" type="Node" node_paths=PackedStringArray("tilemap", "player_instance")]
+[node name="tile_manager" type="Node" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_jf4hc")
 tilemap = NodePath("test_tilemap")
-player_instance = NodePath("")
 
 [node name="test_tilemap" parent="." instance=ExtResource("2_jikhn")]

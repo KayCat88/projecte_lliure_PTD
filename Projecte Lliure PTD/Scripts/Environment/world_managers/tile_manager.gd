@@ -15,29 +15,26 @@ var x_enemy_spawn_boundaries : Vector2
 var room_number : int
 var zone_number : int
 # first element is the pattern index, the second the player spawn position, the third the y boundaries and the fourth the x boundaries
-var pattern_0 : Array = [0, Vector2(373,173), Vector2(), Vector2()]
+var pattern_0 : Array = [0, Vector2(590,570), Vector2(144, 580), Vector2(110, 1050)]
 
 
-var pattern_1 : Array = [0, Vector2(373,173), Vector2(), Vector2()]
+var pattern_1 : Array = [1, Vector2(590,570), Vector2(144, 580), Vector2(110, 1050)]
 
 
-var pattern_2 : Array = [0, Vector2(373,173), Vector2(), Vector2()]
+var pattern_2 : Array = [1, Vector2(590,570), Vector2(144, 580), Vector2(110, 1050)]
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pattern_list = [pattern_0, pattern_1, pattern_2]
 	select_new_pattern()
-	draw_tiles()
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(room_number)
-	print(zone_number)
-	if Input.is_action_just_pressed("j"):
-		draw_tiles()
+	
+	pass
 
 func draw_tiles():
 	room_number += 1

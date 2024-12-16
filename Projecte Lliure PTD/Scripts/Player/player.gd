@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name player
 #constants
-var SPEED = 660.0
+var SPEED = 300.0
 @export var ACCELERATION = 122.2
 @export var DECELERATION = 122.2
 

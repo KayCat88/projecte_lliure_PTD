@@ -8,6 +8,7 @@ var difficulty_tier : int = 1
 
 
 var difficulty_multiplier : int = 1
+var can_spawn : bool
 
 var y_enemy_spawn_boundaries : Vector2
 var x_enemy_spawn_boundaries : Vector2
@@ -58,7 +59,7 @@ func _process(delta):
 func calculate_wave_and_credit_numbers():
 	waves = difficulty_tier * difficulty_multiplier
 	
-	credits = difficulty_level * difficulty_tier * difficulty_multiplier 
+	credits = difficulty_level * difficulty_tier * difficulty_multiplier + 2
 	
 func determine_enemy_spawns():
 	while credits > 0:
@@ -89,21 +90,32 @@ func debug_clear_enemies():
 			enemy_to_clear.queue_free()
 	
 func manage_enemies_killed():
-	for child in get_parent().get_children():
-		if child is enemy:
-			has_wave_been_cleared += 1
+	
+	if can_spawn == true:
+		for child in get_parent().get_children():
+			if child is enemy:
+				has_wave_been_cleared += 1
 		
 		
 			
-	if has_wave_been_cleared <= 0 and waves_cleared < waves:
-		calculate_wave_and_credit_numbers()
-		determine_enemy_spawns()
-		spawn_enemy_wave()
-		waves_cleared += 1
-	elif has_wave_been_cleared <= 0 and waves_cleared == waves:
-		waves_cleared += 1
-	if waves_cleared > waves:
-		has_level_been_cleared = true 
+		if has_wave_been_cleared <= 0 and waves_cleared < waves:
+			calculate_wave_and_credit_numbers()
+			determine_enemy_spawns()
+			spawn_enemy_wave()
+			waves_cleared += 1
+		elif has_wave_been_cleared <= 0 and waves_cleared == waves:
+			waves_cleared += 1
+		if waves_cleared > waves:
+			has_level_been_cleared = true 
+			reset_numbers()
+		else:
+			has_level_been_cleared = false
+		has_wave_been_cleared = 0
 		
-	has_wave_been_cleared = 0
+func reset_numbers():
+	waves_cleared = 0
+	waves = 0
+	credits = 0
+	enemies_to_spawn_in_this_wave.clear()
+	
 	

@@ -23,6 +23,7 @@ radius = 15.5242
 size = Vector2(36, 35)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 collision_mask = 2
 motion_mode = 1
 wall_min_slide_angle = 0.1309
@@ -39,8 +40,6 @@ texture = ExtResource("2_i227v")
 [node name="ShotPoint" type="Marker2D" parent="."]
 position = Vector2(36, 0)
 gizmo_extents = 34.1
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Catching_box" type="Area2D" parent="."]
 collision_mask = 4
@@ -75,6 +74,8 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_dfj60")
 
 [node name="health_manager" parent="." instance=ExtResource("4_nkur5")]
+knockback_strenght = 500
+health = 100
 
 [connection signal="area_entered" from="Catching_box" to="." method="_on_catching_box_area_entered"]
 [connection signal="area_entered" from="bounce_box" to="." method="_on_bounce_box_area_entered"]

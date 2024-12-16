@@ -17,7 +17,7 @@ func _process(delta):
 func take_damage(damage : float, attack_location : Vector2):
 	
 	dir = to_local(attack_location).normalized()
-	print(dir)
+	
 	
 	health -= damage
 	get_parent().velocity = Vector2(dir.x, -dir.y) * knockback_strenght
