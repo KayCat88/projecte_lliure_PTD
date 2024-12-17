@@ -59,7 +59,7 @@ func _process(delta):
 func calculate_wave_and_credit_numbers():
 	waves = difficulty_tier * difficulty_multiplier
 	
-	credits = difficulty_level * difficulty_tier * difficulty_multiplier + 3
+	credits = difficulty_level * difficulty_tier * difficulty_multiplier + 2
 	
 func determine_enemy_spawns():
 	while credits > 0:

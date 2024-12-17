@@ -24,7 +24,7 @@ func _process(delta):
 func hit_box_on_area_entered(area):
 	if area is hurt_box and found_hurt_box == null and can_hurt == true:
 		found_hurt_box = area
-		found_hurt_box.send_damage(damage, global_position)
+		found_hurt_box.send_damage(damage, Vector2(cos(rotation), sin(rotation)))
 		damage_cooldown = damage_cooldown_setter
 	
 

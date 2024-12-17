@@ -1,13 +1,36 @@
-[gd_scene load_steps=11 format=3 uid="uid://dakbbhvyuxtii"]
+[gd_scene load_steps=14 format=3 uid="uid://dakbbhvyuxtii"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_cc63b"]
-[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="2_i227v"]
+[ext_resource type="Texture2D" uid="uid://vntkqcd4t2lj" path="res://Assets/SPRITES/Player/idle_player_no_ball.png" id="2_8fbao"]
 [ext_resource type="PackedScene" uid="uid://cxxurcgw1spqo" path="res://Nodes/Building nodes/Entity/Boxes/tile_finder.tscn" id="3_7kdg6"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_jk3bt"]
 [ext_resource type="PackedScene" uid="uid://d0ns0l2d4v8qv" path="res://Nodes/Building nodes/Entity/Managers/player_health_manager.tscn" id="5_20ahd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1y7x"]
-size = Vector2(32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_uft4f"]
+atlas = ExtResource("2_8fbao")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iduct"]
+atlas = ExtResource("2_8fbao")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wtbr5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uft4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iduct")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m50v7"]
+radius = 8.99402
+height = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j1ocs"]
 radius = 25.0799
@@ -16,11 +39,11 @@ radius = 25.0799
 radius = 25.0
 height = 88.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vhboj"]
-radius = 15.5242
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqoxe"]
+radius = 9.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dfj60"]
-size = Vector2(36, 35)
+size = Vector2(31, 18)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -29,13 +52,14 @@ motion_mode = 1
 wall_min_slide_angle = 0.1309
 script = ExtResource("1_cc63b")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_s1y7x")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, 0)
+sprite_frames = SubResource("SpriteFrames_wtbr5")
+autoplay = "default"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.2, 1, 0.2, 1)
-scale = Vector2(1.00644, 1)
-texture = ExtResource("2_i227v")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_m50v7")
 
 [node name="ShotPoint" type="Marker2D" parent="."]
 position = Vector2(36, 0)
@@ -62,7 +86,8 @@ health_m = NodePath("../player_health_manager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
 self_modulate = Color(1, 1, 0, 1)
-shape = SubResource("CircleShape2D_vhboj")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wqoxe")
 
 [node name="tile_finder" parent="." node_paths=PackedStringArray("hurtbox") instance=ExtResource("3_7kdg6")]
 monitorable = true
@@ -70,11 +95,11 @@ hurtbox = NodePath("../hurt_box")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tile_finder"]
 self_modulate = Color(1, 0.227451, 1, 1)
-position = Vector2(0, 0.5)
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_dfj60")
 
 [node name="player_health_manager" parent="." instance=ExtResource("5_20ahd")]
-knockback_strenght = 500
+health = 15
 
 [connection signal="area_entered" from="Catching_box" to="." method="_on_catching_box_area_entered"]
 [connection signal="area_entered" from="bounce_box" to="." method="_on_bounce_box_area_entered"]
