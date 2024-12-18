@@ -173,6 +173,8 @@ position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_dfj60")
 
 [node name="player_health_manager" parent="." instance=ExtResource("5_20ahd")]
+max_health = 15
+hit_effect = "res://Assets/Particles/player_hit_particles_2d.tscn"
 
 [connection signal="area_entered" from="Catching_box" to="." method="_on_catching_box_area_entered"]
 [connection signal="area_entered" from="bounce_box" to="." method="_on_bounce_box_area_entered"]

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bj4wd515r7eo7" path="res://Nodes/Entity nodes/Environment/reward_manager.tscn" id="3_onw2l"]
 [ext_resource type="PackedScene" uid="uid://dh1xc1jai3h3p" path="res://Nodes/Entity nodes/Environment/tile_manager.tscn" id="4_ryt7f"]
 [ext_resource type="PackedScene" uid="uid://dakbbhvyuxtii" path="res://Nodes/Entity nodes/Player/player.tscn" id="5_7c13d"]
-[ext_resource type="PackedScene" uid="uid://b2wd1wwxrw2aw" path="res://Nodes/Entity nodes/Environment/test_tilemap.tscn" id="6_oys2f"]
+[ext_resource type="PackedScene" uid="uid://b2wd1wwxrw2aw" path="res://Nodes/Entity nodes/Environment/tilemap.tscn" id="6_oys2f"]
 [ext_resource type="PackedScene" uid="uid://2kg8s2ikkjga" path="res://Nodes/Entity nodes/UI/interface.tscn" id="7_7lbs3"]
 
 [node name="World" type="Node2D"]
@@ -34,6 +34,9 @@ position = Vector2(-13, -1763)
 
 [node name="health_bar" parent="INTERFACE" index="0" node_paths=PackedStringArray("entity_health")]
 entity_health = NodePath("../../Player/player_health_manager")
+
+[node name="health_label" parent="INTERFACE" index="1" node_paths=PackedStringArray("player_health")]
+player_health = NodePath("../../Player/player_health_manager")
 
 [connection signal="timeout" from="scene_preparation_timer" to="." method="_on_scene_preparation_timer_timeout"]
 [connection signal="timeout" from="tile_to_enemy_spawner" to="." method="_on_tile_to_enemy_spawner_timeout"]

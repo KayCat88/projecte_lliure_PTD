@@ -12,3 +12,11 @@ func _process(delta):
 
 func _on_button_pressed():
 	game_master_node.load_run()
+
+
+func _on_tutorial_button_pressed():
+	game_master_node.load_tutorial()
+
+
+func _on_credits_button_pressed():
+	game_master_node.load_credits()

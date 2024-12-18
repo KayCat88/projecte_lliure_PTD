@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dh1xc1jai3h3p"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/world_managers/tile_manager.gd" id="1_jf4hc"]
-[ext_resource type="PackedScene" uid="uid://b2wd1wwxrw2aw" path="res://Nodes/Entity nodes/Environment/test_tilemap.tscn" id="2_jikhn"]
+[ext_resource type="PackedScene" uid="uid://b2wd1wwxrw2aw" path="res://Nodes/Entity nodes/Environment/tilemap.tscn" id="2_jikhn"]
 
 [node name="tile_manager" type="Node" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_jf4hc")

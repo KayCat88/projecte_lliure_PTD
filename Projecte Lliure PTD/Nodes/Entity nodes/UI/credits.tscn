@@ -1,0 +1,145 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhrog5laybdfp"]
+
+[ext_resource type="Texture2D" uid="uid://crgixy5u521g1" path="res://Assets/SPRITES/Environment/definitive_tiles.png" id="2_wj8i8"]
+[ext_resource type="FontFile" uid="uid://dvm5p12l3hxqn" path="res://Assets/rainyhearts.ttf" id="3_sqk24"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h173u"]
+font = ExtResource("3_sqk24")
+font_size = 100
+font_color = Color(0.694118, 0.435294, 0.313726, 1)
+outline_size = 20
+outline_color = Color(0.145098, 0.0784314, 0.0431373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3rfva"]
+font = ExtResource("3_sqk24")
+font_size = 40
+font_color = Color(0.694118, 0.435294, 0.313726, 1)
+outline_size = 20
+outline_color = Color(0.145098, 0.0784314, 0.0431373, 1)
+
+[node name="credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DefinitiveTiles" type="Sprite2D" parent="."]
+position = Vector2(1860, 312.215)
+scale = Vector2(10.97, 10.97)
+texture = ExtResource("2_wj8i8")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.458333
+anchor_top = 0.160494
+anchor_right = 0.542535
+anchor_bottom = 0.239198
+offset_left = -132.5
+offset_top = -54.0001
+offset_right = 132.5
+offset_bottom = -11.0003
+grow_horizontal = 2
+text = "CRÈDITS"
+label_settings = SubResource("LabelSettings_h173u")
+
+[node name="programació_disseny" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -151.0
+offset_right = 400.0
+offset_bottom = -57.0001
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 0)
+text = "Programació i disseny - Francesc Caymaris
+"
+label_settings = SubResource("LabelSettings_3rfva")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="art" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -51.0001
+offset_right = 400.0
+offset_bottom = 42.9999
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 0)
+text = "Art - Francesc Caymaris
+"
+label_settings = SubResource("LabelSettings_3rfva")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="font" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = 48.9999
+offset_right = 400.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 0)
+text = "Font utilitzada: rainyhearts - Camellina
+"
+label_settings = SubResource("LabelSettings_3rfva")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="creat_amb" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = 149.0
+offset_right = 400.0
+offset_bottom = 243.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 0)
+text = "Creat amb: Godot Engine - Juan Linietsky
+"
+label_settings = SubResource("LabelSettings_3rfva")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="tornar" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = 249.0
+offset_right = 400.0
+offset_bottom = 343.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 0)
+text = "Clica \"M\" per tornar"
+label_settings = SubResource("LabelSettings_3rfva")
+horizontal_alignment = 1
+autowrap_mode = 3

@@ -1,4 +1,4 @@
-extends ProgressBar
+extends Label
 
 @export var player_health : health_manager
 # Called when the node enters the scene tree for the first time.
@@ -8,5 +8,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	value = player_health.health
+	text = str(player_health.health) + "/" + str(player_health.max_health)
 	

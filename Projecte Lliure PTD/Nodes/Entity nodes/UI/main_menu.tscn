@@ -1,9 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0o5pn04xysde"]
+[gd_scene load_steps=6 format=3 uid="uid://c0o5pn04xysde"]
 
 [ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_cmkwa"]
+[ext_resource type="Texture2D" uid="uid://crgixy5u521g1" path="res://Assets/SPRITES/Environment/definitive_tiles.png" id="2_obhs1"]
+[ext_resource type="FontFile" uid="uid://dvm5p12l3hxqn" path="res://Assets/rainyhearts.ttf" id="2_u8meu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h173u"]
-font_size = 54
+font = ExtResource("2_u8meu")
+font_size = 100
+font_color = Color(0.694118, 0.435294, 0.313726, 1)
+outline_size = 20
+outline_color = Color(0.145098, 0.0784314, 0.0431373, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3rfva"]
+font = ExtResource("2_u8meu")
+font_size = 20
+font_color = Color(0.694118, 0.435294, 0.313726, 1)
+outline_size = 20
+outline_color = Color(0.145098, 0.0784314, 0.0431373, 1)
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -14,7 +27,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cmkwa")
 
-[node name="Label" type="Label" parent="."]
+[node name="DefinitiveTiles" type="Sprite2D" parent="."]
+position = Vector2(1860, 312.215)
+scale = Vector2(10.97, 10.97)
+texture = ExtResource("2_obhs1")
+
+[node name="title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.458333
@@ -25,23 +43,113 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "TITLE"
+text = "ANT BUSTER"
 label_settings = SubResource("LabelSettings_h173u")
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="."]
+[node name="play_button" type="Button" parent="."]
+self_modulate = Color(0.4, 0.223529, 0.192157, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = -40.0
+offset_top = -24.0
+offset_right = 40.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "PLAY"
+pivot_offset = Vector2(40, 0)
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="play" type="Label" parent="play_button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -11.0
+offset_right = 262.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY
+"
+label_settings = SubResource("LabelSettings_3rfva")
+horizontal_alignment = 1
+
+[node name="tutorial_button" type="Button" parent="."]
+self_modulate = Color(0.4, 0.223529, 0.192157, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 26.0
+offset_right = 60.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(60, 0)
+
+[node name="tutorial" type="Label" parent="tutorial_button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -261.0
+offset_top = -8.80499
+offset_right = 263.0
+offset_bottom = 85.195
+grow_horizontal = 2
+grow_vertical = 2
+text = "TUTORIAL
+"
+label_settings = SubResource("LabelSettings_3rfva")
+horizontal_alignment = 1
+
+[node name="credits_button" type="Button" parent="."]
+self_modulate = Color(0.4, 0.223529, 0.192157, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 76.0
+offset_right = 60.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(60, 0)
+
+[node name="tutorial" type="Label" parent="credits_button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -261.0
+offset_top = -8.80499
+offset_right = 263.0
+offset_bottom = 85.195
+grow_horizontal = 2
+grow_vertical = 2
+text = "CREDITS
+"
+label_settings = SubResource("LabelSettings_3rfva")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="play_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="tutorial_button" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="credits_button" to="." method="_on_credits_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbo3et83fhbve"]
+[gd_scene load_steps=15 format=3 uid="uid://dbo3et83fhbve"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/warrior_ant.gd" id="1_1hmr1"]
 [ext_resource type="Texture2D" uid="uid://b4v40j7olq6hd" path="res://Assets/SPRITES/Enemies/warrior_ant.png" id="2_mrhfp"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="4_hompq"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="5_fnsrv"]
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_manager.tscn" id="6_cgfgv"]
+[ext_resource type="PackedScene" uid="uid://di31kvavijhjs" path="res://Nodes/Building nodes/Entity/health_bar.tscn" id="7_q0183"]
+[ext_resource type="Texture2D" uid="uid://cqefvdkwg17fd" path="res://Assets/SPRITES/Enemies/enemy_health_bar.png" id="8_iwrgs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7qcip"]
 radius = 13.0
@@ -19,10 +21,10 @@ radius = 16.0
 height = 66.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y42hn"]
-radius = 617.263
+radius = 358.006
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_73nil"]
-radius = 373.005
+radius = 318.19
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xrknj"]
 radius = 45.0444
@@ -72,14 +74,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qt6l4")
 
 [node name="health_mananger" parent="." instance=ExtResource("6_cgfgv")]
-
-[node name="Label" type="Label" parent="."]
-self_modulate = Color(1, 0.0196078, 0, 1)
-offset_left = -20.0
-offset_top = -38.0
-offset_right = 20.0
-offset_bottom = -15.0
-text = "warrior ANT"
+hit_effect = "res://Assets/Particles/warrior_ant_hit_particles_2d.tscn"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
@@ -100,3 +95,11 @@ collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
 shape = SubResource("CircleShape2D_xrknj")
+
+[node name="health_bar" parent="." node_paths=PackedStringArray("entity_health") instance=ExtResource("7_q0183")]
+offset_left = -16.0
+offset_top = -35.0
+offset_right = 16.0
+offset_bottom = -3.0
+texture_progress = ExtResource("8_iwrgs")
+entity_health = NodePath("../health_mananger")

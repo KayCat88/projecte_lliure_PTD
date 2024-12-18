@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://4k2fpfh1flas"]
+[gd_scene load_steps=14 format=3 uid="uid://4k2fpfh1flas"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/worker_ant.gd" id="1_cuxhd"]
 [ext_resource type="Texture2D" uid="uid://dwricul2oty6p" path="res://Assets/SPRITES/Enemies/worker_ant.png" id="2_pefyu"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="4_mwpvh"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="5_m4erf"]
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_manager.tscn" id="6_i80v2"]
+[ext_resource type="PackedScene" uid="uid://di31kvavijhjs" path="res://Nodes/Building nodes/Entity/health_bar.tscn" id="7_0ovq1"]
+[ext_resource type="Texture2D" uid="uid://cqefvdkwg17fd" path="res://Assets/SPRITES/Enemies/enemy_health_bar.png" id="8_yagt2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wtpao"]
 radius = 8.0
@@ -18,7 +20,7 @@ radius = 14.0
 height = 58.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4fw10"]
-radius = 968.149
+radius = 254.031
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8hjlg"]
 radius = 26.0192
@@ -66,14 +68,8 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sd3xc")
 
 [node name="health_mananger" parent="." instance=ExtResource("6_i80v2")]
-
-[node name="Label" type="Label" parent="."]
-self_modulate = Color(1, 0.0196078, 0, 1)
-offset_left = -20.0
-offset_top = -38.0
-offset_right = 20.0
-offset_bottom = -15.0
-text = "wORKER ANT"
+max_health = 3
+hit_effect = "res://Assets/Particles/worker_ant_hit_particles_2d.tscn"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
@@ -89,3 +85,11 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(26, 0)
 shape = SubResource("CircleShape2D_8hjlg")
+
+[node name="health_bar" parent="." node_paths=PackedStringArray("entity_health") instance=ExtResource("7_0ovq1")]
+offset_left = -16.0
+offset_top = -35.0
+offset_right = 16.0
+offset_bottom = -3.0
+texture_progress = ExtResource("8_yagt2")
+entity_health = NodePath("../health_mananger")

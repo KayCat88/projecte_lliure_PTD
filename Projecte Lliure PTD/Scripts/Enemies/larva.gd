@@ -3,7 +3,8 @@ extends enemy
 var damage = 3
 
 var attack_cooldown = 2
-var warrior_ant_projectile = preload("res://Nodes/Entity nodes/Enemies/enemy_attacks/larva_projectile.tscn")
+var larva_projectile = preload("res://Nodes/Entity nodes/Enemies/enemy_attacks/larva_projectile.tscn")
+var death_particles = preload("res://Assets/Particles/larva_explosion_particles_2d.tscn")
 @onready var shot_point = $rotator/shot_point
 @onready var rotator = $rotator
 @onready var hitbox = $Hitbox
@@ -41,10 +42,10 @@ func _physics_process(delta):
 
 func ranged_attack():
 	for i in projectiles_per_ranged_attack:
-		var warrior_ant_projectile_instance = warrior_ant_projectile.instantiate()
-		get_parent().add_child(warrior_ant_projectile_instance)
-		warrior_ant_projectile_instance.global_position = shot_point.global_position
-		warrior_ant_projectile_instance.rotation = rotator.rotation + direction_change
+		var larva_projectile_instance = larva_projectile.instantiate()
+		get_parent().add_child(larva_projectile_instance)
+		larva_projectile_instance.global_position = shot_point.global_position
+		larva_projectile_instance.rotation = rotator.rotation + direction_change
 		direction_change += deg_to_rad(direction_difference)
 		i += 1
 	direction_change = -deg_to_rad(direction_difference)
@@ -55,6 +56,11 @@ func ranged_attack():
 	
 func melee_attack():
 	hitbox.collider.disabled = false
+	var death_particles_instance = death_particles.instantiate()
+	get_parent().add_child(death_particles_instance)
+	death_particles_instance.global_position = hitbox.global_position
+	death_particles_instance.rotation = rotator.rotation
+	death_particles_instance.emitting = true
 	await get_tree().create_timer(0.1).timeout
 	health_mananger.health = 0
 	
