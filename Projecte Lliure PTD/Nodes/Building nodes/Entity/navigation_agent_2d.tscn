@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Scripts/Building nodes/Entity/navigation_agent_2d.gd" id="1_hb6bt"]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D"]
-debug_enabled = true
 script = ExtResource("1_hb6bt")
 
 [node name="Timer" type="Timer" parent="."]

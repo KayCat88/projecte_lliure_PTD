@@ -32,8 +32,8 @@ position = Vector2(-13, -1763)
 
 [node name="INTERFACE" parent="." instance=ExtResource("7_7lbs3")]
 
-[node name="Health and size" parent="INTERFACE" index="0" node_paths=PackedStringArray("player_health")]
-player_health = NodePath("../../Player/player_health_manager")
+[node name="health_bar" parent="INTERFACE" index="0" node_paths=PackedStringArray("entity_health")]
+entity_health = NodePath("../../Player/player_health_manager")
 
 [connection signal="timeout" from="scene_preparation_timer" to="." method="_on_scene_preparation_timer_timeout"]
 [connection signal="timeout" from="tile_to_enemy_spawner" to="." method="_on_tile_to_enemy_spawner_timeout"]

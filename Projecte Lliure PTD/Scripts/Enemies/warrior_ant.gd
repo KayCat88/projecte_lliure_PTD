@@ -4,9 +4,11 @@ var damage = 3
 
 var attack_cooldown = 2
 var warrior_ant_projectile = preload("res://Nodes/Entity nodes/Enemies/enemy_attacks/warrior_ant_projectile.tscn")
+var bite_particles = preload("res://Assets/Particles/bite_particles_2d.tscn")
 @onready var shot_point = $rotator/shot_point
 @onready var rotator = $rotator
 @onready var hitbox = $rotator/Hitbox
+
 
 var projectiles_per_ranged_attack : int = 3
 var direction_change : float 
@@ -56,6 +58,11 @@ func ranged_attack():
 func melee_attack():
 	hitbox.collider.disabled = false
 	attack_cooldown = 2
+	var bite_particles_instance = bite_particles.instantiate()
+	get_parent().add_child(bite_particles_instance)
+	bite_particles_instance.global_position = shot_point.global_position
+	bite_particles_instance.rotation = rotator.rotation + direction_change
+	bite_particles_instance.emitting = true
 	
 	
 func set_warrior_behavior():
@@ -79,4 +86,9 @@ func set_warrior_behavior():
 		can_melee = false
 	
 	
+	
+	
+
+
+
 	

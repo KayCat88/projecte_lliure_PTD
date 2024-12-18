@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://di31kvavijhjs"]
+
+[ext_resource type="Texture2D" uid="uid://ceeimipdidcff" path="res://Assets/SPRITES/Player/player_health_bar.png" id="1_3oj27"]
+[ext_resource type="Script" path="res://Scripts/Building nodes/Entity/health_bar.gd" id="2_8pruk"]
+
+[node name="health_bar" type="TextureProgressBar"]
+offset_right = 32.0
+offset_bottom = 32.0
+value = 100.0
+rounded = true
+nine_patch_stretch = true
+texture_progress = ExtResource("1_3oj27")
+script = ExtResource("2_8pruk")

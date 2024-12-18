@@ -1,24 +1,23 @@
 [gd_scene load_steps=5 format=3 uid="uid://crw5weo4auigr"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_attacks/projectile.gd" id="1_3dnfv"]
-[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="1_gjalr"]
+[ext_resource type="Texture2D" uid="uid://c2ytghq4u7tw" path="res://Assets/SPRITES/Enemies/shooter_ant_projectile.png" id="2_mgxmc"]
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="3_qi7sd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjg7f"]
-size = Vector2(26, 10)
+size = Vector2(18, 7.5)
 
 [node name="shooter_ant_projectile" type="RayCast2D"]
-target_position = Vector2(10, 0)
+target_position = Vector2(6, 0)
 collision_mask = 3
 script = ExtResource("1_3dnfv")
 
-[node name="Player" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0, 1)
-scale = Vector2(0.755, 0.265)
-texture = ExtResource("1_gjalr")
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_mgxmc")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_qi7sd")]
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, -0.25)
 shape = SubResource("RectangleShape2D_fjg7f")

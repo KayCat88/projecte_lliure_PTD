@@ -1,22 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://p4n6q0cy3k52"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_attacks/larva_projectile.gd" id="1_p2op1"]
-[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="2_yxj5g"]
+[ext_resource type="Texture2D" uid="uid://dqq1opuepfclq" path="res://Assets/SPRITES/Enemies/bile_spit.png" id="2_m6vp8"]
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="3_6qu8q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x41iu"]
-size = Vector2(28, 12)
+size = Vector2(15, 10)
 
 [node name="larva projectile" type="RayCast2D"]
-target_position = Vector2(12, 0)
+target_position = Vector2(6, 0)
 collision_mask = 3
 script = ExtResource("1_p2op1")
 lifetime = 0.75
 
-[node name="Player" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 1, 1)
-scale = Vector2(0.755, 0.265)
-texture = ExtResource("2_yxj5g")
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_m6vp8")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_6qu8q")]
 collision_layer = 8
@@ -24,4 +22,5 @@ damage = 2.0
 damage_cooldown_setter = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_x41iu")

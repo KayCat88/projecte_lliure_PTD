@@ -2,13 +2,14 @@ extends Node2D
 class_name health_manager
 
 @export var knockback_strenght = 500
-@export var health : int = 10
+@export var max_health : int = 10
+var health
 var dir : Vector2
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	health = max_health
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

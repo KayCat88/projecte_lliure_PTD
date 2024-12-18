@@ -55,12 +55,6 @@ shape = SubResource("RectangleShape2D_74eta")
 
 [node name="INTERFACE" parent="." instance=ExtResource("7_tm0fe")]
 
-[node name="Health and size" parent="INTERFACE" index="0" node_paths=PackedStringArray("player_health")]
-player_health = NodePath("../../Player/health_manager")
-
-[node name="Score" parent="INTERFACE" index="1"]
-script = null
-
 [node name="StaticBody2D" parent="." instance=ExtResource("4_u8h0l")]
 position = Vector2(-272, 753)
 rotation = 1.5708

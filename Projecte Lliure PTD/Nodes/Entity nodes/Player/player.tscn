@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dakbbhvyuxtii"]
+[gd_scene load_steps=24 format=3 uid="uid://dakbbhvyuxtii"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_cc63b"]
 [ext_resource type="Texture2D" uid="uid://vntkqcd4t2lj" path="res://Assets/SPRITES/Player/idle_player_no_ball.png" id="2_8fbao"]
 [ext_resource type="PackedScene" uid="uid://cxxurcgw1spqo" path="res://Nodes/Building nodes/Entity/Boxes/tile_finder.tscn" id="3_7kdg6"]
+[ext_resource type="Texture2D" uid="uid://bydq2vlbhe725" path="res://Assets/SPRITES/Player/idle_player_with_ball.png" id="3_e0rsf"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_jk3bt"]
+[ext_resource type="Texture2D" uid="uid://chglwwnb42a87" path="res://Assets/SPRITES/Player/run_player_with_ball.png" id="4_s15mx"]
 [ext_resource type="PackedScene" uid="uid://d0ns0l2d4v8qv" path="res://Nodes/Building nodes/Entity/Managers/player_health_manager.tscn" id="5_20ahd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uft4f"]
@@ -13,6 +15,38 @@ region = Rect2(0, 0, 64, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_iduct"]
 atlas = ExtResource("2_8fbao")
 region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skj8r"]
+atlas = ExtResource("3_e0rsf")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xqta"]
+atlas = ExtResource("3_e0rsf")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oshbr"]
+atlas = ExtResource("2_8fbao")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gko0e"]
+atlas = ExtResource("2_8fbao")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfskr"]
+atlas = ExtResource("4_s15mx")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4onm6"]
+atlas = ExtResource("4_s15mx")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l7m2"]
+atlas = ExtResource("4_s15mx")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uqfu"]
+atlas = ExtResource("4_s15mx")
+region = Rect2(192, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wtbr5"]
 animations = [{
@@ -24,8 +58,47 @@ animations = [{
 "texture": SubResource("AtlasTexture_iduct")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"idle_no_ball",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skj8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xqta")
+}],
+"loop": true,
+"name": &"idle_with_ball",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oshbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gko0e")
+}],
+"loop": true,
+"name": &"run_no_ball",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfskr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4onm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l7m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uqfu")
+}],
+"loop": true,
+"name": &"run_with_ball",
+"speed": 8.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m50v7"]
@@ -52,10 +125,11 @@ motion_mode = 1
 wall_min_slide_angle = 0.1309
 script = ExtResource("1_cc63b")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(15, 0)
 sprite_frames = SubResource("SpriteFrames_wtbr5")
-autoplay = "default"
+animation = &"run_no_ball"
+autoplay = "run_with_ball"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -99,7 +173,6 @@ position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_dfj60")
 
 [node name="player_health_manager" parent="." instance=ExtResource("5_20ahd")]
-health = 15
 
 [connection signal="area_entered" from="Catching_box" to="." method="_on_catching_box_area_entered"]
 [connection signal="area_entered" from="bounce_box" to="." method="_on_bounce_box_area_entered"]

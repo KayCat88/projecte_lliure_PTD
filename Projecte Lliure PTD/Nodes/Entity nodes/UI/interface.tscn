@@ -1,18 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://2kg8s2ikkjga"]
+[gd_scene load_steps=2 format=3 uid="uid://2kg8s2ikkjga"]
 
-[ext_resource type="Script" path="res://Scripts/UI/health_label.gd" id="1_c6gkw"]
-[ext_resource type="FontFile" uid="uid://dvm5p12l3hxqn" path="res://Assets/rainyhearts.ttf" id="1_l4av7"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_vglf3"]
-font = ExtResource("1_l4av7")
-font_color = Color(0.819608, 0.678431, 0.631373, 1)
+[ext_resource type="PackedScene" uid="uid://di31kvavijhjs" path="res://Nodes/Building nodes/Entity/health_bar.tscn" id="3_ip2f8"]
 
 [node name="INTERFACE" type="CanvasLayer"]
 
-[node name="Health and size" type="Label" parent="."]
-offset_top = 8.0
-offset_right = 60.0
-offset_bottom = 31.0
-text = "jdvaads"
-label_settings = SubResource("LabelSettings_vglf3")
-script = ExtResource("1_c6gkw")
+[node name="health_bar" parent="." instance=ExtResource("3_ip2f8")]
+offset_left = -1.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 1.0
+scale = Vector2(5, 5)
+nine_patch_stretch = false

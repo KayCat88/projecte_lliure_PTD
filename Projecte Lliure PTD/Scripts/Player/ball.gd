@@ -8,6 +8,7 @@ var direction : Vector2
 var damage = 2
 
 @onready var hitbox = $Hitbox
+@onready var animation = $animation
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -20,7 +21,7 @@ func _physics_process(delta):
 	move_and_slide()
 	handle_bounces(delta)
 	
-	
+	animation.speed_scale = speed/initial_speed
 	
 	
 	

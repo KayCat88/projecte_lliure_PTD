@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://co1bd6vpn51jj"]
 
-[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="1_qphhd"]
 [ext_resource type="Script" path="res://Scripts/Enemies/larva.gd" id="1_xigeu"]
+[ext_resource type="Texture2D" uid="uid://00hqq736oaqm" path="res://Assets/SPRITES/Enemies/larva.png" id="2_ldycj"]
 [ext_resource type="PackedScene" uid="uid://bfksmdrg6uq4v" path="res://Nodes/Building nodes/Entity/navigation_agent_2d.tscn" id="3_5scn4"]
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="4_f80dp"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="5_fkiv8"]
@@ -11,19 +11,19 @@
 radius = 17.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p4pye"]
-radius = 109.041
+radius = 77.0584
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xcjfs"]
 radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_70kbu"]
-radius = 617.263
+radius = 589.042
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxjg4"]
-radius = 373.005
+radius = 271.046
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8s22a"]
-radius = 97.0824
+radius = 61.0082
 
 [node name="larva" type="CharacterBody2D" node_paths=PackedStringArray("melee_zone", "following_zone", "attacking_zone")]
 z_index = 1
@@ -38,9 +38,8 @@ attacking_zone = NodePath("Area2D2")
 
 [node name="shot_point" type="Marker2D" parent="rotator"]
 
-[node name="Player" type="Sprite2D" parent="rotator"]
-self_modulate = Color(0.431373, 0, 1, 1)
-texture = ExtResource("1_qphhd")
+[node name="sprite" type="Sprite2D" parent="rotator"]
+texture = ExtResource("2_ldycj")
 
 [node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent", "rotator") instance=ExtResource("3_5scn4")]
 enemy_parent = NodePath("..")

@@ -1,16 +1,18 @@
 [gd_scene load_steps=10 format=3 uid="uid://dufc48wtwnjwi"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/shooter_ant.gd" id="1_fu7r2"]
-[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="1_tcr01"]
+[ext_resource type="Texture2D" uid="uid://c5qtddesup8s6" path="res://Assets/SPRITES/Enemies/shooter_ant.png" id="2_k04e8"]
 [ext_resource type="PackedScene" uid="uid://bfksmdrg6uq4v" path="res://Nodes/Building nodes/Entity/navigation_agent_2d.tscn" id="3_2yjda"]
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="5_whq5w"]
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_manager.tscn" id="6_m8k7k"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1rfpm"]
-radius = 17.5
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntcgl"]
+radius = 8.0
+height = 51.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7b6t6"]
-radius = 25.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dlqo2"]
+radius = 11.0
+height = 56.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4qpx"]
 radius = 617.263
@@ -31,9 +33,8 @@ attacking_zone = NodePath("Area2D2")
 [node name="shot_point" type="Marker2D" parent="rotator"]
 position = Vector2(29, 0)
 
-[node name="Player" type="Sprite2D" parent="rotator"]
-self_modulate = Color(0.431373, 0.403922, 1, 1)
-texture = ExtResource("1_tcr01")
+[node name="sprite" type="Sprite2D" parent="rotator"]
+texture = ExtResource("2_k04e8")
 
 [node name="NavigationAgent2D" parent="." node_paths=PackedStringArray("enemy_parent", "rotator") instance=ExtResource("3_2yjda")]
 enemy_parent = NodePath("..")
@@ -42,18 +43,19 @@ rotator = NodePath("../rotator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
-shape = SubResource("CircleShape2D_1rfpm")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ntcgl")
 
 [node name="hurt_box" parent="." node_paths=PackedStringArray("health_m") instance=ExtResource("5_whq5w")]
 collision_layer = 8
 health_m = NodePath("../health_mananger")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box"]
-shape = SubResource("CircleShape2D_7b6t6")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dlqo2")
 
 [node name="health_mananger" parent="." instance=ExtResource("6_m8k7k")]
 knockback_strenght = 100
-health = 5
 
 [node name="Label" type="Label" parent="."]
 self_modulate = Color(1, 0.0196078, 0, 1)

@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dh0frvf31et86"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_attacks/acid.gd" id="1_6i415"]
-[ext_resource type="Texture2D" uid="uid://cr5634cqj35hc" path="res://Assets/SPRITES/Player/PLAYER.png" id="2_lfyeq"]
+[ext_resource type="Texture2D" uid="uid://cnlpfmc2n0e2e" path="res://Assets/SPRITES/Enemies/bile_puddle.png" id="2_uk1xu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vica"]
-radius = 23.1948
+radius = 20.0
 
 [node name="acid" type="Area2D" node_paths=PackedStringArray("collider")]
 collision_layer = 8
@@ -13,12 +13,11 @@ script = ExtResource("1_6i415")
 collider = NodePath("CollisionShape2D")
 damage_cooldown_setter = 1.0
 
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_uk1xu")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3vica")
-
-[node name="Player" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 0.180392, 1)
-rotation = 0.760964
-texture = ExtResource("2_lfyeq")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

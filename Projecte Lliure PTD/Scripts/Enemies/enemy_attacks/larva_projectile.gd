@@ -17,4 +17,5 @@ func _die():
 	var acid_spawn_instance = acid_spawn.instantiate()
 	get_parent().add_child(acid_spawn_instance)
 	acid_spawn_instance.global_position = global_position
+	acid_spawn_instance.rotation = rotation
 	queue_free()

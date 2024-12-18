@@ -27,6 +27,8 @@ var bounce_boost_multiplier = 1
 @onready var hurt_box_var = $hurt_box
 @onready var tile_finder = $tile_finder
 @onready var health_manager_var = $health_manager
+@onready var animations = $animations
+
 
 
 #scenes
@@ -52,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	
+	handle_animations()
 
 func handle_movement():
 	direction = Vector2(cos(rotation), sin(rotation))
@@ -119,3 +121,14 @@ func _on_bounce_box_area_entered(area):
 		area.bounce_boost *= bounce_boost_multiplier
 		area.bounce_off(Vector2(cos(rotation), sin(rotation)))
 		
+func handle_animations():
+	if has_ball == true:
+		if velocity != Vector2(0, 0):
+			animations.play("run_with_ball")
+		else:
+			animations.play("idle_with_ball")
+	else:
+		if velocity != Vector2(0, 0):
+			animations.play("run_no_ball")
+		else:
+			animations.play("idle_no_ball")
