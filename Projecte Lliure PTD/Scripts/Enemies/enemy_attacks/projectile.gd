@@ -32,9 +32,10 @@ func handle_lifetime(delta : float):
 	
 func handle_movement():
 	dir = Vector2(cos(rotation), sin(rotation))
-	position += dir * speed
+	position += dir * speed * Engine.time_scale
 	
 func handle_colliding():
+	#revisa que no hagi topat amb el jugador o el mapa
 	if is_colliding() and get_collider() is player or get_collider() is TileMap:
 		_die()
 	if hitbox.found_hurt_box != null:

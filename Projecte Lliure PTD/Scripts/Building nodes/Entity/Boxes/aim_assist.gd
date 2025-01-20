@@ -26,7 +26,7 @@ func _process(delta):
 	
 func search_for_enemies():
 	
-	
+	#revisa la colisió de cada raig per determinar si té enemics davant
 	for raycast in raycast_set:
 		
 		if raycast.get_collider() is enemy:
@@ -39,12 +39,9 @@ func search_for_enemies():
 		enemy_selected = null
 	
 func redirect():
-	
+	#si te un enemic ajusta la pilota cap a ell
 	if enemy_selected != null:
 		dir = Vector2(enemy_selected.global_position.x - ball.global_position.x, enemy_selected.global_position.y - ball.global_position.y).normalized()
-		#ball.velocity = dir * ball.speed
-		#ball.global_position.x = move_toward(ball.global_position.x, enemy_selected.global_position.x, assist_strenght)
-		#ball.global_position.y = move_toward(ball.global_position.y, enemy_selected.global_position.y, assist_strenght)
 		ball.velocity.x = move_toward(ball.velocity.x, (dir * ball.speed).x, (assist_strenght/ball.initial_speed)*ball.speed)
 		ball.velocity.y = move_toward(ball.velocity.y, (dir * ball.speed).y, (assist_strenght/ball.initial_speed)*ball.speed)
 		

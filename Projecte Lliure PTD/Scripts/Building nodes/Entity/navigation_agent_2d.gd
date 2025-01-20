@@ -5,7 +5,7 @@ var player_target : player
 @export var rotator : Marker2D
 var deceleration : float
 
-var rotation_smoothing 
+var rotation_delay : Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	deceleration = speed/50
@@ -14,10 +14,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _process(delta):
-	
-	rotator.look_at(player_target.global_position)
+	#defineix la posició a mirar i una operació per suavitzar el gir
+	rotation_delay = lerp(rotation_delay, player_target.global_position, 0.1 )
+	rotator.look_at(rotation_delay)
 	
 	var dir = enemy_parent.make_navigation_calculations(get_next_path_position()) 
+	
+	#si el programa de l'enemic ho permet, es mou cap al jugador
 	if enemy_parent.can_follow == true:
 		
 		enemy_parent.velocity = dir * speed 

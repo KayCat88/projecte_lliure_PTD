@@ -1,21 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtv8lt58x4wy5"]
+[gd_scene load_steps=5 format=3 uid="uid://dtv8lt58x4wy5"]
 
 [ext_resource type="Script" path="res://Scripts/Environment/stat_fruit.gd" id="1_i3m0o"]
-[ext_resource type="Texture2D" uid="uid://dut5abytxlggk" path="res://icon.svg" id="2_ir5w8"]
+[ext_resource type="Texture2D" uid="uid://c3ejcpncr5pg5" path="res://Assets/SPRITES/Player/stamina_fruit.png" id="2_28frk"]
+[ext_resource type="AudioStream" uid="uid://coetnayulllui" path="res://Assets/SFX/Player/powerup.wav" id="3_nk5eq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itg48"]
-radius = 88.2043
+radius = 11.0454
 
 [node name="speed_stat_fruit" type="Area2D"]
 script = ExtResource("1_i3m0o")
 stat_to_upgrade = 1
 
 [node name="Icon" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 1, 1)
-position = Vector2(0, -4)
-texture = ExtResource("2_ir5w8")
+texture = ExtResource("2_28frk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_itg48")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_nk5eq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

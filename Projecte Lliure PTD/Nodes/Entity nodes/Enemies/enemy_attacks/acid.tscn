@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh0frvf31et86"]
+[gd_scene load_steps=5 format=3 uid="uid://dh0frvf31et86"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_attacks/acid.gd" id="1_6i415"]
 [ext_resource type="Texture2D" uid="uid://cnlpfmc2n0e2e" path="res://Assets/SPRITES/Enemies/bile_puddle.png" id="2_uk1xu"]
+[ext_resource type="AudioStream" uid="uid://i6nmxjbiu15v" path="res://Assets/SFX/Enemies/larva_acid.wav" id="3_3amin"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vica"]
 radius = 20.0
 
 [node name="acid" type="Area2D" node_paths=PackedStringArray("collider")]
 collision_layer = 8
+collision_mask = 9
 monitorable = false
 script = ExtResource("1_6i415")
 collider = NodePath("CollisionShape2D")
@@ -19,5 +21,9 @@ texture = ExtResource("2_uk1xu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3vica")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3amin")
+autoplay = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

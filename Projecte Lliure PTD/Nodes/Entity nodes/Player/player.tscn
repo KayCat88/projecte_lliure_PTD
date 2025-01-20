@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dakbbhvyuxtii"]
+[gd_scene load_steps=26 format=3 uid="uid://dakbbhvyuxtii"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_cc63b"]
 [ext_resource type="Texture2D" uid="uid://vntkqcd4t2lj" path="res://Assets/SPRITES/Player/idle_player_no_ball.png" id="2_8fbao"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://b5nlal8y65mik" path="res://Nodes/Building nodes/Entity/Boxes/hurt_box.tscn" id="3_jk3bt"]
 [ext_resource type="Texture2D" uid="uid://chglwwnb42a87" path="res://Assets/SPRITES/Player/run_player_with_ball.png" id="4_s15mx"]
 [ext_resource type="PackedScene" uid="uid://d0ns0l2d4v8qv" path="res://Nodes/Building nodes/Entity/Managers/player_health_manager.tscn" id="5_20ahd"]
+[ext_resource type="AudioStream" uid="uid://byce1j2vahstw" path="res://Assets/SFX/Player/step.wav" id="8_ig2bh"]
+[ext_resource type="AudioStream" uid="uid://gabc0eajaj1a" path="res://Assets/SFX/Player/shoot_ball.wav" id="9_24kjd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uft4f"]
 atlas = ExtResource("2_8fbao")
@@ -173,8 +175,21 @@ position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_dfj60")
 
 [node name="player_health_manager" parent="." instance=ExtResource("5_20ahd")]
-max_health = 15
+max_health = 30
 hit_effect = "res://Assets/Particles/player_hit_particles_2d.tscn"
+hurt_sound = "res://Assets/SFX/Player/player_hurt.wav"
+
+[node name="steps" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ig2bh")
+volume_db = -10.895
+
+[node name="other" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_24kjd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
 
 [connection signal="area_entered" from="Catching_box" to="." method="_on_catching_box_area_entered"]
 [connection signal="area_entered" from="bounce_box" to="." method="_on_bounce_box_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

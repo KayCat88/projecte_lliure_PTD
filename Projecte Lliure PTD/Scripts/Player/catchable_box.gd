@@ -11,6 +11,7 @@ var bounce_boost = 2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#revisa si es pot activar
 	if disabled_timer > 0:
 		disabled_timer -= delta
 	else:
@@ -19,6 +20,7 @@ func _process(delta):
 func die():
 	get_parent().queue_free()
 func bounce_off(collision : Vector2):
+	#aquest proces actua com un rebot artificial i afegeig velocitat extra a la pilota
 	get_parent().velocity = get_parent().velocity.bounce(collision)
 	get_parent().velocity *= 0.5
 	get_parent().rotation_degrees *= cos(get_parent().velocity.x)**-1

@@ -13,6 +13,7 @@ func _process(delta):
 	handle_movement()
 
 func _die():
+	#crea una bassa d'àcid al desapareixer
 	visible = false
 	var acid_spawn_instance = acid_spawn.instantiate()
 	get_parent().add_child(acid_spawn_instance)

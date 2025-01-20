@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://elvl0x4rv32b"]
+
+[ext_resource type="PackedScene" uid="uid://bht7ydy82185i" path="res://Assets/Particles/player_hit_particles_2d.tscn" id="1_p0fgt"]
+[ext_resource type="AudioStream" uid="uid://coetnayulllui" path="res://Assets/SFX/Player/powerup.wav" id="2_66idk"]
+
+[sub_resource type="Gradient" id="Gradient_3pxcp"]
+offsets = PackedFloat32Array(0, 0.472527, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.604396, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7iqb4"]
+gradient = SubResource("Gradient_3pxcp")
+
+[sub_resource type="Curve" id="Curve_405f3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cbv67"]
+curve = SubResource("Curve_405f3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5r7ya"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0, 0, 0)
+emission_shape = 1
+emission_sphere_radius = 0.01
+angle_max = 53.5
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 120.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+damping_max = 1.124
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_cbv67")
+color = Color(0.317647, 0.443137, 0.0901961, 1)
+color_ramp = SubResource("GradientTexture1D_7iqb4")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+
+[node name="power_up_particles" instance=ExtResource("1_p0fgt")]
+process_material = SubResource("ParticleProcessMaterial_5r7ya")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="0"]
+stream = ExtResource("2_66idk")
+autoplay = true

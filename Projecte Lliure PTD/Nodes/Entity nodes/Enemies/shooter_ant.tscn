@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dufc48wtwnjwi"]
+[gd_scene load_steps=13 format=3 uid="uid://dufc48wtwnjwi"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/shooter_ant.gd" id="1_fu7r2"]
 [ext_resource type="Texture2D" uid="uid://c5qtddesup8s6" path="res://Assets/SPRITES/Enemies/shooter_ant.png" id="2_k04e8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://di31kvavijhjs" path="res://Nodes/Building nodes/Entity/health_bar.tscn" id="6_6m8rx"]
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_manager.tscn" id="6_m8k7k"]
 [ext_resource type="Texture2D" uid="uid://cqefvdkwg17fd" path="res://Assets/SPRITES/Enemies/enemy_health_bar.png" id="7_jvkf2"]
+[ext_resource type="AudioStream" uid="uid://c33vk6gs000nc" path="res://Assets/SFX/Enemies/shooter_ant.wav" id="8_jvvik"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntcgl"]
 radius = 8.0
@@ -58,7 +59,7 @@ shape = SubResource("CapsuleShape2D_dlqo2")
 
 [node name="health_mananger" parent="." instance=ExtResource("6_m8k7k")]
 knockback_strenght = 100
-max_health = 5
+max_health = 4
 hit_effect = "res://Assets/Particles/shooter_ant_hit_particles_2d.tscn"
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -82,3 +83,6 @@ offset_right = 16.0
 offset_bottom = -3.0
 texture_progress = ExtResource("7_jvkf2")
 entity_health = NodePath("../health_mananger")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_jvvik")

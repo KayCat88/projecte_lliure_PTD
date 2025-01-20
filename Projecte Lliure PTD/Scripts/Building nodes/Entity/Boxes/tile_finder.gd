@@ -20,6 +20,7 @@ func _process(delta):
 		damage_tile_timer -= delta
 		
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	#obté les dades de la peça en que es troba i determina si es troba damunt una peça danyina
 	if body is TileMap:
 		tile_location = body.get_coords_for_body_rid(body_rid)
 		current_data = body.get_cell_tile_data(0, body.get_coords_for_body_rid(body_rid))

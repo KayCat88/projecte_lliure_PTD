@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://cphw8i58pgs4k"]
+
+[ext_resource type="PackedScene" uid="uid://di31kvavijhjs" path="res://Nodes/Building nodes/Entity/health_bar.tscn" id="1_61tma"]
+[ext_resource type="Texture2D" uid="uid://fp4qsq3qyomf" path="res://Assets/SPRITES/Player/player_stamina_bar.png" id="2_0vcmt"]
+[ext_resource type="Script" path="res://Scripts/Building nodes/Entity/stamina_bar.gd" id="3_fsskr"]
+
+[node name="stamina_bar" instance=ExtResource("1_61tma")]
+texture_progress = ExtResource("2_0vcmt")
+script = ExtResource("3_fsskr")

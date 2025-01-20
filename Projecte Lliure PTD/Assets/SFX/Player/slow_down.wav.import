@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://fnst8w7vj1x1"
-path="res://.godot/imported/Hit_Hurt.wav-50311be081167c5370f7ecdfd81a6265.sample"
+uid="uid://h3cwd73b78wm"
+path="res://.godot/imported/slow_down.wav-7a5edc8058c5258378c8b4d61e3a1cd8.sample"
 
 [deps]
 
-source_file="res://Assets/SFX/Enemies/Hit_Hurt.wav"
-dest_files=["res://.godot/imported/Hit_Hurt.wav-50311be081167c5370f7ecdfd81a6265.sample"]
+source_file="res://Assets/SFX/Player/slow_down.wav"
+dest_files=["res://.godot/imported/slow_down.wav-7a5edc8058c5258378c8b4d61e3a1cd8.sample"]
 
 [params]
 

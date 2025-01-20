@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dyp72d2s8hhtb"]
+[gd_scene load_steps=15 format=3 uid="uid://dyp72d2s8hhtb"]
 
 [ext_resource type="Script" path="res://Scripts/Player/ball.gd" id="1_5g5p2"]
 [ext_resource type="Script" path="res://Scripts/Player/catchable_box.gd" id="3_6ke1b"]
 [ext_resource type="PackedScene" uid="uid://csmacf83jh8p6" path="res://Nodes/Building nodes/Entity/Boxes/hitbox.tscn" id="4_xbo7b"]
 [ext_resource type="PackedScene" uid="uid://ctjaq0pa6l32w" path="res://Nodes/Building nodes/Entity/Boxes/aim_assist.tscn" id="5_hr3hb"]
 [ext_resource type="Texture2D" uid="uid://cb4r3mev7p84i" path="res://Assets/SPRITES/Player/moving_ball.png" id="5_l50w4"]
+[ext_resource type="AudioStream" uid="uid://dkangul2saf30" path="res://Assets/SFX/Player/ball_bounce.wav" id="6_qexqb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h3tp5"]
 radius = 17.5285
@@ -89,3 +90,6 @@ animation = &"roll"
 autoplay = "roll"
 frame = 1
 frame_progress = 0.180452
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_qexqb")

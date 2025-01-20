@@ -35,10 +35,11 @@ var worker_ant_spawn : PackedScene = preload("res://Nodes/Entity nodes/Enemies/w
 var shooter_ant_spawn : PackedScene = preload("res://Nodes/Entity nodes/Enemies/shooter_ant.tscn")
 var larva_spawn : PackedScene = preload("res://Nodes/Entity nodes/Enemies/larva.tscn")
 var warrior_ant_spawn : PackedScene = preload("res://Nodes/Entity nodes/Enemies/warrior_ant.tscn")
-
+var enemy_location_spawner : PackedScene = preload("res://Nodes/Entity nodes/Enemies/enemy_spawner.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#calcula els credits de l'habitació
 	calculate_wave_and_credit_numbers()
 	low_tier_enemies = [worker_ant_spawn, shooter_ant_spawn]
 	high_tier_enemies = [larva_spawn, warrior_ant_spawn]
@@ -49,19 +50,19 @@ func _ready():
 func _process(delta):
 	
 	manage_enemies_killed()
-	if Input.is_action_just_pressed("u"):
-		determine_enemy_spawns()
-		spawn_enemy_wave()
+	#per si els enemics surten dins les parets
 	if Input.is_action_just_pressed("j"):
 		debug_clear_enemies()
 	
 	
 func calculate_wave_and_credit_numbers():
+	#calcula els credits segons l'habitació
 	waves = difficulty_tier * difficulty_multiplier
 	
-	credits = difficulty_level * difficulty_tier * difficulty_multiplier + 2
+	credits = (difficulty_level * difficulty_tier * difficulty_multiplier + 2)/(waves*0.75)
 	
 func determine_enemy_spawns():
+	#mentre tengui credits, determina aleatoriament els enemics a ser afeginds a la cadena d'spawn
 	while credits > 0:
 		next_enemy_tier_value = randi_range(0, 1)
 		next_enemy_type_value = randi_range(0, 1)
@@ -76,28 +77,30 @@ func determine_enemy_spawns():
 			credits-=low_tier_enemy_cost
 
 func spawn_enemy_wave():
+	#fa apareixer els enemics de la cadena d'spawn mitjançant enemy spawners
 	for enemy_spawn in enemies_to_spawn_in_this_wave:
-		var enemy_spawn_instance = enemy_spawn.instantiate()
-		get_parent().add_child(enemy_spawn_instance)
-		enemy_spawn_instance.global_position = Vector2(randi_range(x_enemy_spawn_boundaries.x, x_enemy_spawn_boundaries.y), randi_range(y_enemy_spawn_boundaries.x, y_enemy_spawn_boundaries.y))
-		enemy_spawn_instance.get_player_info_at_spawn()
+		var enemy_location_spawner_instance = enemy_location_spawner.instantiate()
+		get_parent().add_child(enemy_location_spawner_instance)
+		enemy_location_spawner_instance.global_position = Vector2(randi_range(x_enemy_spawn_boundaries.x, x_enemy_spawn_boundaries.y), randi_range(y_enemy_spawn_boundaries.x, y_enemy_spawn_boundaries.y))
+		enemy_location_spawner_instance.x_enemy_spawn_boundaries = x_enemy_spawn_boundaries
+		enemy_location_spawner_instance.y_enemy_spawn_boundaries = y_enemy_spawn_boundaries
+		enemy_location_spawner_instance.enemy_spawn = enemy_spawn
+		
 	
 	enemies_to_spawn_in_this_wave.clear()
 	
 func debug_clear_enemies():
+	#lleva els enemics
 	for enemy_to_clear in get_parent().get_children():
 		if enemy_to_clear is enemy:
 			enemy_to_clear.queue_free()
 	
 func manage_enemies_killed():
-	
+	#revisa si hi ha enemics dins la sala i quantes onades s'han duit a terme
 	if can_spawn == true:
 		for child in get_parent().get_children():
-			if child is enemy:
+			if child is enemy or child is enemy_spawner:
 				has_wave_been_cleared += 1
-		
-		
-			
 		if has_wave_been_cleared <= 0 and waves_cleared < waves:
 			calculate_wave_and_credit_numbers()
 			determine_enemy_spawns()

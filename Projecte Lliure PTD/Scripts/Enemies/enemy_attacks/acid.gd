@@ -12,19 +12,22 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#revisa si s'ha acabat el temps d'existencia
 	if lifetime <= 0:
 		queue_free()
 	else:
 		lifetime -= delta
+	#revisa si pot tornar a aplicar mal
 	if damage_cooldown >= 0:
 		damage_cooldown -= delta
 		collider.disabled = true
-	else: 
+	else:
 		collider.disabled = false
 
 
 
 func _on_area_entered(area):
+	#revisa si ha trobat una hurt box i envia el mal
 	if area is hurt_box:
 		area.send_damage(damage, global_position)
 		damage_cooldown = damage_cooldown_setter

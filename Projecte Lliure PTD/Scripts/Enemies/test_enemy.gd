@@ -23,6 +23,7 @@ func _physics_process(delta):
 	
 	
 func get_player_info_at_spawn():
+	#cerca al jugador a l'escena i l'empra com a objectiu de navegació
 	for child in get_parent().get_children():
 		if child is player:
 			player_target = child
@@ -33,10 +34,12 @@ func get_player_info_at_spawn():
 
 
 func make_navigation_calculations(raw_next_path_position : Vector2) -> Vector2:
+	#formula que el navegador no pot fer de per si
 	calculated_next_path_position = to_local(raw_next_path_position).normalized()
 	return calculated_next_path_position
 	
 func set_behavior():
+	#revisa on es troba el  jugador respecte a l'enemic i activa el comportament corresponent
 	if following_zone.get_overlapping_bodies().size() > 0 and following_zone.get_overlapping_bodies()[0] is player and can_attack == false:
 		can_follow = true
 		

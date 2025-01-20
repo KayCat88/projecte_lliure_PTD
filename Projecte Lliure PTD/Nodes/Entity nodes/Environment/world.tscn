@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b2wd1wwxrw2aw" path="res://Nodes/Entity nodes/Environment/tilemap.tscn" id="6_oys2f"]
 [ext_resource type="PackedScene" uid="uid://2kg8s2ikkjga" path="res://Nodes/Entity nodes/UI/interface.tscn" id="7_7lbs3"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player_node")]
 script = ExtResource("1_puku7")
+player_node = NodePath("Player")
 
 [node name="scene_preparation_timer" type="Timer" parent="."]
 one_shot = true
@@ -29,6 +30,7 @@ player_instance = NodePath("../Player")
 position = Vector2(-13, -1763)
 
 [node name="test_tilemap" parent="." instance=ExtResource("6_oys2f")]
+position = Vector2(50, 12)
 
 [node name="INTERFACE" parent="." instance=ExtResource("7_7lbs3")]
 
@@ -36,10 +38,25 @@ position = Vector2(-13, -1763)
 entity_health = NodePath("../../Player/player_health_manager")
 
 [node name="health_label" parent="INTERFACE" index="1" node_paths=PackedStringArray("player_health")]
+offset_left = 172.0
+offset_right = 212.0
 player_health = NodePath("../../Player/player_health_manager")
+
+[node name="stamina_label" parent="INTERFACE" index="2" node_paths=PackedStringArray("stamina")]
+stamina = NodePath("../../Player")
+
+[node name="stamina_bar" parent="INTERFACE" index="3" node_paths=PackedStringArray("stamina")]
+fill_mode = 0
+stamina = NodePath("../../Player")
+
+[node name="Shaders" parent="INTERFACE" index="4" node_paths=PackedStringArray("player_node")]
+player_node = NodePath("../../Player")
+
+[node name="level_ender" type="Timer" parent="."]
 
 [connection signal="timeout" from="scene_preparation_timer" to="." method="_on_scene_preparation_timer_timeout"]
 [connection signal="timeout" from="tile_to_enemy_spawner" to="." method="_on_tile_to_enemy_spawner_timeout"]
+[connection signal="timeout" from="level_ender" to="." method="_on_level_ender_timeout"]
 
 [editable path="Player"]
 [editable path="INTERFACE"]

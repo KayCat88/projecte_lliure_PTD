@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://4k2fpfh1flas"]
+[gd_scene load_steps=15 format=3 uid="uid://4k2fpfh1flas"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/worker_ant.gd" id="1_cuxhd"]
 [ext_resource type="Texture2D" uid="uid://dwricul2oty6p" path="res://Assets/SPRITES/Enemies/worker_ant.png" id="2_pefyu"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://2p0ieeimxtgf" path="res://Nodes/Building nodes/Entity/Managers/health_manager.tscn" id="6_i80v2"]
 [ext_resource type="PackedScene" uid="uid://di31kvavijhjs" path="res://Nodes/Building nodes/Entity/health_bar.tscn" id="7_0ovq1"]
 [ext_resource type="Texture2D" uid="uid://cqefvdkwg17fd" path="res://Assets/SPRITES/Enemies/enemy_health_bar.png" id="8_yagt2"]
+[ext_resource type="AudioStream" uid="uid://diag5cibfp2vq" path="res://Assets/SFX/Enemies/worker_ant.wav" id="9_8v8lu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wtpao"]
 radius = 8.0
@@ -93,3 +94,6 @@ offset_right = 16.0
 offset_bottom = -3.0
 texture_progress = ExtResource("8_yagt2")
 entity_health = NodePath("../health_mananger")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_8v8lu")
